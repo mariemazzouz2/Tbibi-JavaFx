@@ -14,10 +14,7 @@ import utils.SessionManager;
 import java.io.IOException;
 
 public class FrontMedecinController {
-    @FXML private Button btnForum;
-    @FXML private Button btnConsultation;
-    @FXML private Button btnEvenement;
-    @FXML private Button btnProduit;
+
     @FXML
     private Label labelNomUtilisateur;
 
@@ -25,21 +22,9 @@ public class FrontMedecinController {
     public void initialize() {
         Utilisateur currentUser = SessionManager.getInstance().getCurrentUser();
         if (currentUser != null) {
-            labelNomUtilisateur.setText("Bienvenue, " + currentUser.getNom());
+            labelNomUtilisateur.setText( currentUser.getNom());
         }
-        btnForum.setOnAction(e -> {
-            // logiques ou navigation
-            System.out.println("Forum cliqué");
-        });
-        btnConsultation.setOnAction(e -> {
-            System.out.println("Consultation cliquée");
-        });
-        btnEvenement.setOnAction(e -> {
-            System.out.println("Événement cliqué");
-        });
-        btnProduit.setOnAction(e -> {
-            System.out.println("Produit cliqué");
-        });
+
     }
     public void logout(javafx.event.ActionEvent event) {
         SessionManager.getInstance().logout();

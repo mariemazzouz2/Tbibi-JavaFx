@@ -21,16 +21,20 @@
                </font>
             </Label>
             <Separator layoutX="21.0" layoutY="215.0" prefHeight="10.0" prefWidth="370.0" />
-            <TextField fx:id="txtUserName" layoutX="42.0" layoutY="103.0" prefHeight="36.0" prefWidth="310.0" promptText="UserName" style="-fx-border-color: grey;">
+            <TextField fx:id="txtUserName" layoutX="42.0" layoutY="103.0" prefHeight="36.0" prefWidth="310.0" promptText="UserName"
+                       style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 5 10 5 10;">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="txtPassword" layoutX="42.0" layoutY="169.0" prefHeight="36.0" prefWidth="310.0" promptText="Password" style="-fx-border-color: grey;">
+
+            <PasswordField fx:id="txtPassword" layoutX="42.0" layoutY="169.0" prefHeight="36.0" prefWidth="310.0" promptText="Password"
+                           style="-fx-background-color: white; -fx-border-color: grey; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 5 10 5 10;">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
+
             <Button layoutX="72.0" layoutY="278.0" mnemonicParsing="false" onAction="#btnSignIn" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: blue;" text="SignIn" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
