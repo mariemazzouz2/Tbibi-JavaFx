@@ -88,7 +88,7 @@ public class LoginFormController implements Initializable {
                 fxmlFile = "/FrontPatient.fxml";
                 title = "Accueil Patient";
             } else if (role.contains("ADMIN")) {
-                fxmlFile = "/Backend.fxml";
+                fxmlFile = "/backendAdmin.fxml";
                 title = "Espace Admin";
             } else {
                 showAlert("Rôle inconnu !");

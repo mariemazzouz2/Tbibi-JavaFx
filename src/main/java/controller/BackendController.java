@@ -21,7 +21,7 @@ public class BackendController {
     public void initialize() {
         Utilisateur currentUser = SessionManager.getInstance().getCurrentUser();
         if (currentUser != null) {
-            labelNomUtilisateur.setText("Bienvenue, " + currentUser.getNom());
+            labelNomUtilisateur.setText(currentUser.getNom());
         }
     }
 
