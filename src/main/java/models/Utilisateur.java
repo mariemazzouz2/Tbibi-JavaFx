@@ -65,6 +65,36 @@ public class Utilisateur {
     public void setTaille(Double taille) { this.taille = taille; }
     public Integer getPoids() { return poids; }
     public void setPoids(Integer poids) { this.poids = poids; }
+    public String getDiplome() {
+        return diplome;
+    }
+
+    public void setDiplome(String diplome) {
+        this.diplome = diplome;
+    }
+
+    public String getSpecialite() {
+        return specialite;
+    }
+
+    public void setSpecialite(String specialite) {
+        this.specialite = specialite;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
 
     @Override
     public String toString() {
@@ -80,4 +110,5 @@ public class Utilisateur {
                 ", sexe='" + sexe + '\'' +
                 '}';
     }
+
 }
