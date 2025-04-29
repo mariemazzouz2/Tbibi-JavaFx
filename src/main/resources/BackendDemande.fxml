@@ -8,6 +8,10 @@
 <?import javafx.geometry.Insets?>
 
 <?import javafx.scene.text.Font?>
+<?import java.awt.Button?>
+<?import java.awt.TextField?>
+<?import javax.swing.plaf.synth.Region?>
+<?import java.lang.classfile.Label?>
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackendDemandeController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #F5F7FA;">
 
     <!-- Navbar from backend.fxml -->

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ManageResponsesController"
+            prefHeight="500.0" prefWidth="700.0"
+            styleClass="main-pane"
+            stylesheets="/styles/RepondreQuestion.css">
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Titre -->
+        <Label fx:id="titleLabel" text="Gérer les réponses" styleClass="title-label">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- TableView pour afficher les réponses -->
+        <TableView fx:id="responsesTable" prefHeight="300" prefWidth="660" styleClass="responses-table">
+            <columns>
+                <!-- Colonne Contenu -->
+                <TableColumn fx:id="contentColumn" text="Contenu" prefWidth="300">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="contenu" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Date -->
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateReponse" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Médecin -->
+                <TableColumn fx:id="responderColumn" text="Médecin" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="medecin" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <!-- Boutons -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="Ajouter une réponse"
+                    styleClass="add-button"
+                    onAction="#handleAddResponse">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20" />
+                </padding>
+            </Button>
+            <Button text="Fermer"
+                    styleClass="close-button"
+                    onAction="#handleClose">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20" />
+                </padding>
+            </Button>
+        </HBox>
+    </VBox>
+</AnchorPane>
