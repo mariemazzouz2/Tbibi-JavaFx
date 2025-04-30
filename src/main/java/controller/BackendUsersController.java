@@ -1,6 +1,8 @@
 package controller;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Utilisateur;
 import service.UtilisateurDAO;
@@ -16,10 +19,26 @@ import utils.SessionManager;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class BackendUsersController {
-    @FXML
 
+    @FXML private TableView<Utilisateur> tableViewUtilisateurs;
+    @FXML private TableColumn<Utilisateur, String> colNom;
+    @FXML private TableColumn<Utilisateur, String> colPrenom;
+    @FXML private TableColumn<Utilisateur, String> colEmail;
+    @FXML private TableColumn<Utilisateur, String> colRole;
+    @FXML private TableColumn<Utilisateur, Void> colActions;
+    @FXML private TableColumn<Utilisateur, String> colAdresse;
+    @FXML private TableColumn<Utilisateur, String> colDateNaissance;
+    @FXML private TableColumn<Utilisateur, String> colTelephone;
+    @FXML private TableColumn<Utilisateur, String> colSexe;
+    private List<Utilisateur> utilisateurs;
+    private static final int pageSize = 10; // Taille de la page
+
+    @FXML
+    private Pagination pagination;
+    @FXML
     public void goToListeDemandes(javafx.event.ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackendDemande.fxml"));
@@ -46,16 +65,6 @@ public class BackendUsersController {
             e.printStackTrace();
         }
     }
-    @FXML private TableView<Utilisateur> tableViewUtilisateurs;
-    @FXML private TableColumn<Utilisateur, String> colNom;
-    @FXML private TableColumn<Utilisateur, String> colPrenom;
-    @FXML private TableColumn<Utilisateur, String> colEmail;
-    @FXML private TableColumn<Utilisateur, String> colRole;
-    @FXML private TableColumn<Utilisateur, Void> colActions;
-    @FXML private TableColumn<Utilisateur, String> colAdresse;
-    @FXML private TableColumn<Utilisateur, String> colDateNaissance;
-    @FXML private TableColumn<Utilisateur, String> colTelephone;
-    @FXML private TableColumn<Utilisateur, String> colSexe;
 
     @FXML
     private Label labelNomUtilisateur;
@@ -63,9 +72,18 @@ public class BackendUsersController {
 
     @FXML
     public void initialize() {
+        try {
+        utilisateurs = utilisateurDAO.getAllUsers();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         Utilisateur currentUser = SessionManager.getInstance().getCurrentUser();
+        int totalPages = (int) Math.ceil((double) utilisateurs.size() / pageSize);
+        pagination.setPageCount(totalPages);
+        pagination.setCurrentPageIndex(0);
+        pagination.setPageFactory(this::createPage);
         if (currentUser != null) {
-            labelNomUtilisateur.setText("Bienvenue, " + currentUser.getNom());
+            labelNomUtilisateur.setText( currentUser.getNom());
         }
         colNom.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNom()));
         colPrenom.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPrenom()));
@@ -78,12 +96,9 @@ public class BackendUsersController {
 
         ajouterBoutonsActions();
 
-        try {
-            tableViewUtilisateurs.getItems().setAll(utilisateurDAO.getAllUsers()); // ou getAllUsers si tu veux tout
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
+
     public void logout(javafx.event.ActionEvent event) {
         SessionManager.getInstance().logout();
         try {
@@ -170,6 +185,18 @@ public class BackendUsersController {
             e.printStackTrace();
         }
     }
+    private Node createPage(int pageIndex) {
+        int start = pageIndex * pageSize;
+        int end = Math.min(start + pageSize, utilisateurs.size());
+        List<Utilisateur> pageData = utilisateurs.subList(start, end);
+
+        ObservableList<Utilisateur> pageItems = FXCollections.observableArrayList(pageData);
+        tableViewUtilisateurs.setItems(pageItems);
+
+        // On peut renvoyer n'importe quel Node ici, mais on a déjà la TableView affichée
+        return new Label(); // ou même `return null;` ça fonctionnera aussi
+    }
+
 
 
 }

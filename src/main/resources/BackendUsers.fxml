@@ -45,7 +45,7 @@
     <!-- Main Content (Table from BackendUsers.fxml) -->
     <center>
         <AnchorPane>
-            <TableView fx:id="tableViewUtilisateurs" layoutX="20.0" layoutY="20.0" prefWidth="560.0" prefHeight="500.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="20.0">
+            <TableView fx:id="tableViewUtilisateurs" layoutX="20.0" layoutY="20.0" prefWidth="560.0" prefHeight="500.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="60.0">
                 <columns>
                     <TableColumn fx:id="colNom" text="Nom" prefWidth="100"/>
                     <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="100"/>
@@ -58,6 +58,8 @@
                     <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
                 </columns>
             </TableView>
+            <Pagination fx:id="pagination" layoutX="20.0" layoutY="520.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
         </AnchorPane>
+
     </center>
 </BorderPane>
