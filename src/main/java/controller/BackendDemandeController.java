@@ -21,6 +21,7 @@ import service.UtilisateurDAO;
 import utils.SessionManager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BackendDemandeController {
@@ -52,6 +53,11 @@ public class BackendDemandeController {
     private TableColumn<Utilisateur, String> colSpecialite;
     @FXML
     private TableColumn<Utilisateur, Void> colAction;
+    @FXML
+    private Pagination pagination;
+    private static final int ROWS_PER_PAGE = 10;
+    private List<Utilisateur> allUtilisateurs = new ArrayList<>();
+
 
     private final UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
     @FXML
@@ -87,12 +93,15 @@ public class BackendDemandeController {
 
     private void ajouterColonneAction() {
         colAction.setCellFactory(param -> new TableCell<>() {
-            private final Button btnAccepter = new Button("Accepter");
-            private final Button btnRefuser = new Button("Refuser");
+            private final HBox hbox = new HBox(10); // espacement entre les boutons
+            private final Button btnAccepter = new Button("✅");
+            private final Button btnRefuser = new Button("❌");
             private final Button btnVoirDiplome = new Button("Voir diplôme");
             private final HBox box = new HBox(5, btnAccepter, btnRefuser, btnVoirDiplome);
 
             {
+                btnAccepter.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;");
+                btnRefuser.setStyle("-fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;");
                 btnAccepter.setOnAction(event -> {
                     Utilisateur u = getTableView().getItems().get(getIndex());
                     utilisateurDAO.accepterUtilisateur(u.getId());
@@ -122,6 +131,7 @@ public class BackendDemandeController {
                     Utilisateur u = getTableView().getItems().get(getIndex());
                     afficherDiplomePopup(u.getDiplome());
                 });
+
             }
 
             @Override
@@ -138,15 +148,17 @@ public class BackendDemandeController {
 
 
     private void chargerUtilisateurs() {
-        ObservableList<Utilisateur> utilisateurs = FXCollections.observableArrayList();
         try {
-            List<Utilisateur> liste = utilisateurDAO.getUtilisateursAvecStatus(0);
-            utilisateurs.addAll(liste);
-            tableUtilisateurs.setItems(utilisateurs);
+            allUtilisateurs = utilisateurDAO.getUtilisateursAvecStatus(0);
+            int pageCount = (int) Math.ceil((double) allUtilisateurs.size() / ROWS_PER_PAGE);
+            pagination.setPageCount(pageCount);
+            pagination.setCurrentPageIndex(0);
+            pagination.setPageFactory(this::createPage);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
     private void afficherDiplomePopup(String cheminImage) {
         if (cheminImage == null || cheminImage.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -183,4 +195,14 @@ public class BackendDemandeController {
             e.printStackTrace();
         }
     }
+    private Node createPage(int pageIndex) {
+        int fromIndex = pageIndex * ROWS_PER_PAGE;
+        int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, allUtilisateurs.size());
+        ObservableList<Utilisateur> pageData = FXCollections.observableArrayList(
+                allUtilisateurs.subList(fromIndex, toIndex)
+        );
+        tableUtilisateurs.setItems(pageData);
+        return tableUtilisateurs;
+    }
+
 }

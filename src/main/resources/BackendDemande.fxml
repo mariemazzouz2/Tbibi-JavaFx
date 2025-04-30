@@ -61,9 +61,11 @@
                         <TableColumn fx:id="colNom" text="Nom" prefWidth="100"/>
                         <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="100"/>
                         <TableColumn fx:id="colSpecialite" text="Spécialité" prefWidth="150"/>
-                        <TableColumn fx:id="colAction" text="Action" prefWidth="150"/>
+                        <TableColumn fx:id="colAction" text="Action" prefWidth="250"/>
                     </columns>
                 </TableView>
+                <Pagination fx:id="pagination" pageCount="1" maxPageIndicatorCount="5" />
+
             </children>
             <padding>
                 <Insets top="20"/>
