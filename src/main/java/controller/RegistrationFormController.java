@@ -107,6 +107,7 @@ public class RegistrationFormController {
             selectedImageFile = selectedFile; // ⬅️ stockage
             System.out.println("Image sélectionnée : " + selectedImageFile.getAbsolutePath());
         }
+
     }
 
 
@@ -238,7 +239,7 @@ public class RegistrationFormController {
                 if (selectedImageFile != null) {
 
                     // Dossier cible dans le projet (à créer si nécessaire)
-                    File destDir = new File("user_images");
+                    File destDir = new File("C:\\Users\\LENOVO\\Desktop\\Reconnaissance Faciale Java\\known_faces");
                     if (!destDir.exists()) {
                         destDir.mkdirs(); // crée le dossier s’il n’existe pas
                     }
@@ -247,14 +248,17 @@ public class RegistrationFormController {
                     File destFile = new File(destDir, selectedImageFile.getName());
 
                     // Copie de l’image sélectionnée
+                    // Copie de l’image sélectionnée
                     try {
                         java.nio.file.Files.copy(selectedImageFile.toPath(), destFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                        user.setImage(destFile.getAbsolutePath()); // on stocke juste le nom
+                        user.setImage(destFile.getAbsolutePath());
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         showAlert("Erreur lors de la copie de l'image !");
                         return;
                     }
+
                 } else {
                     user.setImage(null); // ou image par défaut
                 }
