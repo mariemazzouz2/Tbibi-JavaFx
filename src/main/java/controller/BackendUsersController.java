@@ -95,7 +95,9 @@ public class BackendUsersController {
         colSexe.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getSexe()));
 
         ajouterBoutonsActions();
-
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onSearchClicked();
+        });
 
     }
 
@@ -195,6 +197,27 @@ public class BackendUsersController {
 
         // On peut renvoyer n'importe quel Node ici, mais on a déjà la TableView affichée
         return new Label(); // ou même `return null;` ça fonctionnera aussi
+    }
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private void onSearchClicked() {
+        String keyword = searchField.getText().toLowerCase();
+        List<Utilisateur> filteredList = utilisateurs.stream()
+                .filter(u -> u.getNom().toLowerCase().contains(keyword) ||
+                        u.getPrenom().toLowerCase().contains(keyword) ||
+                        u.getEmail().toLowerCase().contains(keyword) ||
+                        u.getRoles().toLowerCase().contains(keyword) ||
+                        u.getAdresse().toLowerCase().contains(keyword) ||
+                        u.getSexe().toLowerCase().contains(keyword) ||
+                        String.valueOf(u.getTelephone()).contains(keyword) ||
+                        u.getDateNaissance().toString().contains(keyword))
+                .toList();
+
+        ObservableList<Utilisateur> filteredObservableList = FXCollections.observableArrayList(filteredList);
+        tableViewUtilisateurs.setItems(filteredObservableList);
+        pagination.setPageCount(1); // Plus de pagination pour une recherche
     }
 
 

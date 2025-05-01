@@ -11,8 +11,10 @@
     <top>
         <HBox alignment="CENTER_RIGHT" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #E5E7EB; -fx-border-width: 0 0 1 0;">
             <children>
-                <TextField promptText="Search for..." style="-fx-max-width: 200; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #D1D5DB;" />
-                <Button text="🔍" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-background-radius: 50; -fx-padding: 5;" />
+                <TextField fx:id="searchField" promptText="Search for..." style="-fx-max-width: 200; -fx-background-radius: 20; -fx-border-radius: 20; -fx-border-color: #D1D5DB;" />
+
+                <Button text="🔍" onAction="#onSearchClicked" style="-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-background-radius: 50; -fx-padding: 5;" />
+
                 <Region HBox.hgrow="ALWAYS" />
                 <Label fx:id="labelNomUtilisateur" styleClass="user-info" text="Malak">
                     <graphic>

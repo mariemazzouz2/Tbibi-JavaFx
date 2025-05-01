@@ -275,10 +275,10 @@ public class RegistrationFormController {
                 stage.setTitle("Login");
                 stage.show();
             }
-            } catch(Exception e){
-                e.printStackTrace();
-                showAlert("Erreur lors de l'inscription !");
-            }
+        } catch(Exception e){
+            e.printStackTrace();
+            showAlert("Erreur lors de l'inscription !");
+        }
 
     }
 
