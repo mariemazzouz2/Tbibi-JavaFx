@@ -1,4 +1,5 @@
 package controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,7 +15,8 @@ import utils.SessionManager;
 import java.io.IOException;
 
 public class FrontMedecinController {
-
+    @FXML
+    public Button forum;
     @FXML
     private Label labelNomUtilisateur;
 
@@ -39,5 +41,16 @@ public class FrontMedecinController {
             e.printStackTrace();
         }
     }
-
+    public void goForum(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListQuestionDocteur.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Liste des Questions");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

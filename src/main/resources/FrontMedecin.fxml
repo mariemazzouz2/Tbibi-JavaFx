@@ -21,7 +21,7 @@
 
          <Button text="Home" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Consultation" style="-fx-background-color: transparent; -fx-text-fill: black;" />
-         <Button text="Forum" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+         <Button fx:id="forum" onAction="#goForum" text="Forum" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Evenement" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Produit" style="-fx-background-color: transparent; -fx-text-fill: black;" />

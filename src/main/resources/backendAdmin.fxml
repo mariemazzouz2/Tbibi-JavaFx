@@ -19,6 +19,8 @@
                 <Label text="DASHBOARD" style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 20 0 10 10;" />
                 <Label text="INTERFACE" style="-fx-text-fill: #A3BFFA; -fx-font-size: 12px; -fx-padding: 10 0 5 10;" />
                 <Button text="Liste Demandes" onAction="#goToListeDemandes" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button text="Statistique" onAction="#goToListeStats" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
+
                 <Button text="Liste Users" onAction="#goToListeUsers" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
                 <Label text="ADDONS" style="-fx-text-fill: #A3BFFA; -fx-font-size: 12px; -fx-padding: 10 0 5 10;" />
                 <Button text="Pages" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT; -fx-padding: 5 10;" />

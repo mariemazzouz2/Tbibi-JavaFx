@@ -5,11 +5,11 @@ public enum TypeVote {
     Dislike,;
 
     // You can add methods if needed
-    public boolean isUpvote() {
+    public boolean LIKE() {
         return this == Like;
     }
 
-    public boolean isDownvote() {
+    public boolean DISLIKE() {
         return this == Dislike;
     }
 }

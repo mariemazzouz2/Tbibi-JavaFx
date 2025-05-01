@@ -40,4 +40,12 @@ public class MailService {
             throw new RuntimeException(e);
         }
     }
+
+    public void sendmail(String recipientEmail, String question, String responseContent) throws jakarta.mail.MessagingException {
+        String subject = "Votre question a été traitée";
+        String body = "Bonjour,\n\nVotre question : " + question +
+                "\n\nRéponse : " + responseContent +
+                "\n\nMerci de votre patience.";
+        sendMail(recipientEmail, subject, body);
+    }
 }

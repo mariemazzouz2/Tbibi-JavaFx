@@ -139,4 +139,42 @@ public class QuestionService implements IService<Question> {
         }
         return null;
     }
+
+    // Nouvelle méthode pour récupérer les questions par patient ID
+    public List<Question> getByPatientId(int patientId) throws SQLException {
+        List<Question> questions = new ArrayList<>();
+        String sql = "SELECT q.*, u.nom as patient_nom, u.prenom as patient_prenom " +
+                "FROM question q " +
+                "JOIN utilisateur u ON q.patient_id = u.id " +
+                "WHERE q.patient_id = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, patientId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Question question = new Question();
+                    question.setId(rs.getInt("id"));
+                    question.setTitre(rs.getString("titre"));
+                    question.setContenu(rs.getString("contenu"));
+
+                    Specialite specialite = Specialite.valueOf(rs.getString("specialite"));
+                    question.setSpecialite(specialite);
+
+                    question.setImage(rs.getString("image"));
+                    question.setVisible(rs.getBoolean("visible"));
+                    question.setDateCreation(rs.getTimestamp("date_creation").toLocalDateTime());
+
+                    Utilisateur patient = new Utilisateur();
+                    patient.setId(rs.getInt("patient_id"));
+                    patient.setNom(rs.getString("patient_nom"));
+                    patient.setPrenom(rs.getString("patient_prenom"));
+                    question.setPatient(patient);
+
+                    questions.add(question);
+                }
+            }
+        }
+        return questions;
+    }
 }

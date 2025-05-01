@@ -98,6 +98,19 @@ public class Question {
         this.reponses = reponses;
     }
 
-
+    @Override
+    public String toString() {
+        return "Question{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", contenu='" + contenu + '\'' +
+                ", specialite=" + specialite +
+                ", image='" + image + '\'' +
+                ", visible=" + visible +
+                ", dateCreation=" + dateCreation +
+                ", patient=" + patient +
+                ", reponses=" + reponses +
+                '}';
     }
+}
 

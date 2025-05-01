@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import service.QuestionService;
 import javafx.util.StringConverter;
+import utils.SessionManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -265,9 +266,12 @@ public class AddQuestionController {
         question.setVisible(visibleCheck.isSelected());
         question.setDateCreation(LocalDateTime.now());
 
-        Utilisateur patient = new Utilisateur();
-        patient.setId(1); // À remplacer par l'ID de l'utilisateur connecté
-        question.setPatient(patient);
+        // Get the current user from SessionManager
+        Utilisateur currentUser = SessionManager.getInstance().getCurrentUser();
+        if (currentUser == null) {
+            throw new IllegalStateException("Aucun utilisateur connecté");
+        }
+        question.setPatient(currentUser);
 
         if (selectedImageFile != null) {
             String imagePath = saveImage(selectedImageFile);
@@ -284,26 +288,11 @@ public class AddQuestionController {
         alert.setContentText("Votre question a été ajoutée avec succès !");
 
         alert.showAndWait().ifPresent(response -> {
-            try {
-                // Fermer la fenêtre actuelle
-                Stage currentStage = (Stage) titleField.getScene().getWindow();
-                currentStage.close();
+            // Fermer la fenêtre actuelle
+            Stage currentStage = (Stage) titleField.getScene().getWindow();
+            currentStage.close();
 
-                // Charger la liste des questions
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Patient/ListQuestion.fxml"));
-                Parent root = loader.load();
 
-                // Créer une nouvelle scène
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Liste des Questions");
-                stage.show();
-            } catch (IOException e) {
-                showAlert("Erreur", "Navigation",
-                        "Impossible d'ouvrir la liste des questions: " + e.getMessage(),
-                        Alert.AlertType.ERROR);
-                e.printStackTrace();
-            }
         });
     }
 
