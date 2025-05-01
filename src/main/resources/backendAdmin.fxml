@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 
 <?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.chart.PieChart?>
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #F5F7FA;" fx:controller="controller.BackendController">
 
     <!-- Left Sidebar -->
@@ -67,9 +68,12 @@
                     <VBox prefWidth="600" prefHeight="300" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5;">
                         <Label text="Earnings Overview" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10;" />
                     </VBox>
-                    <VBox prefWidth="300" prefHeight="300" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5;">
+                    <VBox prefWidth="600" prefHeight="400" style="-fx-background-color: white; -fx-border-color: #E5E7EB; -fx-border-radius: 5; -fx-background-radius: 5;">
                         <Label text="Revenue Sources" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10;" />
+                        <PieChart fx:id="rolePieChart" prefWidth="300" prefHeight="250" />
+                        <VBox fx:id="legendContainer" spacing="5" style="-fx-padding: 10;" />
                     </VBox>
+
                 </HBox>
 
                 <!-- Projects and Illustrations -->

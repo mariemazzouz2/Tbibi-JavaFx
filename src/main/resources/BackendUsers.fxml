@@ -50,8 +50,8 @@
     <center>
         <VBox spacing="10.0" style="-fx-padding: 20;">
         <HBox spacing="10">
-            <Button text="Ajouter utilisateur" onAction="#goToAddUser" style="-fx-background-color: #10B981; -fx-text-fill: white;" />
-            <Button text="Envoyer SMS" onAction="#goToSmsForm" style="-fx-background-color: #F59E0B; -fx-text-fill: white;" />
+            <Button text="Ajouter utilisateur" onAction="#goToAddUser" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+            <Button text="Envoyer SMS" onAction="#goToSmsForm" style="-fx-background-color: #F87171; -fx-text-fill: white;" />
         </HBox>
         <AnchorPane>
             <TableView fx:id="tableViewUtilisateurs" layoutX="20.0" layoutY="20.0" prefWidth="560.0" prefHeight="500.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="60.0">

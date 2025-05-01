@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,11 +12,28 @@ import models.Utilisateur;
 import utils.SessionManager;
 
 import java.io.IOException;
+import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import models.Utilisateur;
+import service.UtilisateurDAO; // Exemple
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+import java.util.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BackendController {
 
     @FXML
     private Label labelNomUtilisateur;
+    @FXML
+    private PieChart rolePieChart;
+    @FXML
+    private VBox legendContainer;
+
+    private UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
 
     @FXML
     public void initialize() {
@@ -23,6 +41,7 @@ public class BackendController {
         if (currentUser != null) {
             labelNomUtilisateur.setText(currentUser.getNom());
         }
+        afficherStatistiquesRoles();
     }
 
     public void logout(javafx.event.ActionEvent event) {
@@ -66,4 +85,52 @@ public class BackendController {
             e.printStackTrace();
         }
     }
+    public void afficherStatistiquesRoles() {
+        Map<String, Integer> roleCount = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+
+        try {
+            List<Utilisateur> utilisateurs = utilisateurDAO.getAllUsers();
+
+            for (Utilisateur u : utilisateurs) {
+                try {
+                    String[] roles = mapper.readValue(u.getRoles(), String[].class);
+                    for (String role : roles) {
+                        roleCount.put(role, roleCount.getOrDefault(role, 0) + 1);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            rolePieChart.getData().clear();
+            for (Map.Entry<String, Integer> entry : roleCount.entrySet()) {
+                rolePieChart.getData().add(new PieChart.Data(entry.getKey(), entry.getValue()));
+            }
+
+            // Attendre que les nodes soient rendus pour accéder à leur couleur
+            Platform.runLater(() -> {
+                legendContainer.getChildren().clear();
+
+                for (PieChart.Data data : rolePieChart.getData()) {
+                    Node node = data.getNode();
+                    if (node != null && node instanceof javafx.scene.shape.Path) {
+                        Color color = (Color) ((javafx.scene.shape.Shape) node).getFill();
+
+                        Rectangle colorBox = new Rectangle(10, 10, color);
+                        Label roleLabel = new Label(data.getName());
+                        HBox legendItem = new HBox(10, colorBox, roleLabel);
+
+                        legendContainer.getChildren().add(legendItem);
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
+

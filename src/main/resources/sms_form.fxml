@@ -15,4 +15,5 @@
 
     <Button text="Envoyer SMS" onAction="#sendSms"/>
     <Label fx:id="statusLabel"/>
+    <Button text="Ajouter utilisateur" onAction="#goToUsers" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
 </VBox>
