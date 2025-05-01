@@ -5,6 +5,8 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackendUsersController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #F5F7FA;">
 
     <!-- Navbar from backend.fxml -->
@@ -46,6 +48,11 @@
 
     <!-- Main Content (Table from BackendUsers.fxml) -->
     <center>
+        <VBox spacing="10.0" style="-fx-padding: 20;">
+        <HBox spacing="10">
+            <Button text="Ajouter utilisateur" onAction="#goToAddUser" style="-fx-background-color: #10B981; -fx-text-fill: white;" />
+            <Button text="Envoyer SMS" onAction="#goToSmsForm" style="-fx-background-color: #F59E0B; -fx-text-fill: white;" />
+        </HBox>
         <AnchorPane>
             <TableView fx:id="tableViewUtilisateurs" layoutX="20.0" layoutY="20.0" prefWidth="560.0" prefHeight="500.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.bottomAnchor="60.0">
                 <columns>
@@ -62,6 +69,38 @@
             </TableView>
             <Pagination fx:id="pagination" layoutX="20.0" layoutY="520.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
         </AnchorPane>
-
+        </VBox>
     </center>
+    <right>
+        <VBox spacing="10.0" prefWidth="200.0" alignment="TOP_CENTER" style="-fx-padding: 20;">
+            <Label text="Filtres" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <TextField fx:id="filterNomField" promptText="Nom" />
+            <ComboBox fx:id="filterRoleBox" promptText="Rôle">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+
+
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <ComboBox fx:id="filterSexeBox" promptText="Sexe">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Homme"/>
+                        <String fx:value="Femme"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label text="Date de naissance entre :" />
+            <HBox spacing="5">
+                <DatePicker fx:id="filterDateNaissanceStartPicker" promptText="Début" />
+                <DatePicker fx:id="filterDateNaissanceEndPicker" promptText="Fin" />
+            </HBox>
+            <Button text="Appliquer Filtres" onAction="#onAppliquerFiltres" style="-fx-background-color: #3B82F6; -fx-text-fill: white;" />
+            <Button text="Réinitialiser" onAction="#onResetFiltres" style="-fx-background-color: #F87171; -fx-text-fill: white;" />
+        </VBox>
+    </right>
+
+
 </BorderPane>

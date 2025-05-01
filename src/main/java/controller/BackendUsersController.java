@@ -19,6 +19,7 @@ import utils.SessionManager;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class BackendUsersController {
@@ -34,6 +35,16 @@ public class BackendUsersController {
     @FXML private TableColumn<Utilisateur, String> colTelephone;
     @FXML private TableColumn<Utilisateur, String> colSexe;
     private List<Utilisateur> utilisateurs;
+    @FXML private TextField filterNomField;
+    @FXML private ComboBox<String> filterRoleBox;
+
+    @FXML private ComboBox<String> filterSexeBox;
+    @FXML private DatePicker filterDateNaissanceStartPicker;
+    @FXML private DatePicker filterDateNaissanceEndPicker;
+    private List<Utilisateur> filteredUtilisateurs;
+
+
+
     private static final int pageSize = 10; // Taille de la page
 
     @FXML
@@ -88,7 +99,14 @@ public class BackendUsersController {
         colNom.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getNom()));
         colPrenom.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getPrenom()));
         colEmail.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getEmail()));
-        colRole.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getRoles()));
+        colRole.setCellValueFactory(data -> {
+            String rawRoles = data.getValue().getRoles(); // Exemple : ["ROLE_PATIENT"]
+            String cleanedRole = rawRoles.replaceAll("[\\[\\]\"]", ""); // Retire [ ] et "
+            String[] roles = cleanedRole.split(",");
+            return new SimpleStringProperty(roles.length > 0 ? roles[0].trim() : "Aucun rôle");
+        });
+
+
         colAdresse.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getAdresse()));
         colDateNaissance.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getDateNaissance().toString()));
         colTelephone.setCellValueFactory(data -> new SimpleStringProperty(String.valueOf(data.getValue().getTelephone())));
@@ -98,6 +116,9 @@ public class BackendUsersController {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             onSearchClicked();
         });
+        ObservableList<String> roles = FXCollections.observableArrayList("ROLE_PATIENT", "ROLE_MEDECIN");
+        filterRoleBox.setItems(roles);
+
 
     }
 
@@ -219,7 +240,73 @@ public class BackendUsersController {
         tableViewUtilisateurs.setItems(filteredObservableList);
         pagination.setPageCount(1); // Plus de pagination pour une recherche
     }
+    @FXML
+    private void onAppliquerFiltres() {
+        String nom = filterNomField.getText().toLowerCase().trim();
+        String selectedRole = filterRoleBox.getValue();
+        String finalSelectedRole = (selectedRole != null) ? selectedRole.trim() : "";
 
+        String sexe = filterSexeBox.getValue();
+        LocalDate startDate = filterDateNaissanceStartPicker.getValue();
+        LocalDate endDate = filterDateNaissanceEndPicker.getValue();
+
+        filteredUtilisateurs = utilisateurs.stream()
+                .filter(u -> {
+                    String cleanedRole = u.getRoles().replace("[", "").replace("]", "").replace("\"", "");
+                    return (nom.isEmpty() || u.getNom().toLowerCase().contains(nom)) &&
+                            (finalSelectedRole.isEmpty() || cleanedRole.contains(finalSelectedRole)) &&
+                            (sexe == null || u.getSexe().equalsIgnoreCase(sexe)) &&
+                            (startDate == null || !u.getDateNaissance().isBefore(startDate)) &&
+                            (endDate == null || !u.getDateNaissance().isAfter(endDate));
+                })
+                .toList();
+
+        pagination.setCurrentPageIndex(0);
+        updatePagination();
+    }
+
+    private void updatePagination() {
+        List<Utilisateur> sourceList = (filteredUtilisateurs != null) ? filteredUtilisateurs : utilisateurs;
+
+        int totalPageCount = (int) Math.ceil((double) sourceList.size() / pageSize);
+
+        pagination.setPageCount(Math.max(totalPageCount, 1));
+
+        pagination.setPageFactory(pageIndex -> {
+            int fromIndex = pageIndex * pageSize;
+            int toIndex = Math.min(fromIndex + pageSize, sourceList.size());
+            tableViewUtilisateurs.setItems(FXCollections.observableArrayList(sourceList.subList(fromIndex, toIndex)));
+            return new VBox(); // Obligatoire pour le setPageFactory
+        });
+    }
+
+    @FXML
+    private void onResetFiltres() {
+        filterNomField.clear();
+        filterRoleBox.setValue(null);
+        filterSexeBox.setValue(null);
+        filterDateNaissanceStartPicker.setValue(null);
+        filterDateNaissanceEndPicker.setValue(null);
+
+        filteredUtilisateurs = null;
+        pagination.setCurrentPageIndex(0);
+
+        updatePagination();
+    }
+    @FXML
+    public void goToSmsForm(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sms_form.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Envoyer SMS");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
