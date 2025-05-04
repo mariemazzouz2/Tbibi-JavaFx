@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+
+<?import java.lang.String?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ModifierController" style="-fx-background-color: #f5f5f5;">
+    <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
+
+        <Label text="Modifier l'utilisateur" style="-fx-font-weight: bold;" textFill="#333">
+            <font>
+                <Font name="Arial" size="22"/>
+            </font>
+        </Label>
+
+        <ImageView fx:id="imageView" fitHeight="120" fitWidth="120" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 4);"/>
+        <Button text="Changer l'image" onAction="#onChangeImage" style="-fx-background-color: #007BFF; -fx-text-fill: white;"/>
+
+        <GridPane hgap="15" vgap="12">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+
+            <TextField fx:id="nomField" promptText="Nom" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <TextField fx:id="prenomField" promptText="Prénom" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <TextField fx:id="emailField" promptText="Email" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <TextField fx:id="adresseField" promptText="Adresse" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <DatePicker fx:id="dateNaissancePicker" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <TextField fx:id="telephoneField" promptText="Téléphone" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <ComboBox fx:id="sexeComboBox" promptText="Sexe" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Homme"/>
+                        <String fx:value="Femme"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+            <!-- Médecin -->
+            <TextField fx:id="specialiteField" promptText="Spécialité" visible="false" managed="false" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <TextField fx:id="diplomeField" promptText="Diplôme" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+            <!-- Patient -->
+            <TextField fx:id="tailleField" promptText="Taille (cm)" visible="false" managed="false" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <TextField fx:id="poidsField" promptText="Poids (kg)" visible="false" managed="false" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+        </GridPane>
+
+        <!-- 🆕 Ces deux éléments sont déplacés ici -->
+        <ImageView fx:id="diplomeImageView" fitHeight="120" fitWidth="120" preserveRatio="true"
+                   visible="false" managed="false"
+                   style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 4);"/>
+        <Button text="Changer l'image du diplôme" onAction="#onChangeDiplomeImage"
+                visible="false" managed="false"
+                style="-fx-background-color: #17a2b8; -fx-text-fill: white;"/>
+
+        <!-- Bouton Enregistrer reste à la fin -->
+        <Button text="Enregistrer" onAction="#onSave"
+                style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-weight: bold;" maxWidth="200"/>
+    </VBox>
+</AnchorPane>

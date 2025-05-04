@@ -148,11 +148,11 @@ public class BackendUsersController {
                 btnModifier.setOnAction(event -> {
                     Utilisateur utilisateur = getTableView().getItems().get(getIndex());
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierUser.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Modifier.fxml"));
                         Parent root = loader.load();
 
                         // Récupération du contrôleur de la vue
-                        ModifierUserController controller = loader.getController();
+                        ModifierController controller = loader.getController();
                         controller.initData(utilisateur); // Passe les données à préremplir
 
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

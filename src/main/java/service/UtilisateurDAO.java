@@ -187,6 +187,32 @@ public class UtilisateurDAO {
         }
     }
 
+    public void modifierUtilisateur(Utilisateur user) {
+        String sql = "UPDATE utilisateur SET nom = ?, prenom = ?, email = ?, roles = ?, telephone = ?, adresse = ?, date_naissance = ?, sexe = ?, taille = ?, poids = ?, specialite = ?, diplome = ?, image = ?, status = ? WHERE id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, user.getNom());
+            stmt.setString(2, user.getPrenom());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getRoles());
+            stmt.setInt(5, user.getTelephone());
+            stmt.setString(6, user.getAdresse());
+            stmt.setDate(7, java.sql.Date.valueOf(user.getDateNaissance()));
+            stmt.setString(8, user.getSexe());
+            stmt.setObject(9, user.getTaille());
+            stmt.setObject(10, user.getPoids());
+            stmt.setString(11, user.getSpecialite());
+            stmt.setString(12, user.getDiplome());
+            stmt.setString(13, user.getImage());
+            stmt.setInt(14, user.getStatus() != null ? user.getStatus() : 0);
+            stmt.setInt(15, user.getId());
+
+            stmt.executeUpdate();
+            System.out.println("Utilisateur mis à jour avec succès !");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
