@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="root" stylesheets="@../../styles/modern.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Patient.PatientConsultationController">
+
+    <top>
+        <VBox spacing="10" styleClass="header-section">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <Label styleClass="header-label" text="Mes consultations" />
+
+            <!-- Filter Section -->
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="filter-section">
+                <ComboBox fx:id="filterStatus" prefWidth="150" promptText="Status" />
+                <ComboBox fx:id="filterType" prefWidth="150" promptText="Type" />
+                <DatePicker fx:id="filterDate" promptText="Date" styleClass="filter-date" />
+                <Region HBox.hgrow="ALWAYS" />
+                <TextField fx:id="searchField" prefWidth="200" promptText="Rechercher..." styleClass="search-field" />
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" styleClass="content-section">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+
+            <!-- Replaced TableView with ListView -->
+            <ListView fx:id="listViewConsultations" styleClass="consultation-list" VBox.vgrow="ALWAYS" />
+        </VBox>
+    </center>
+
+    <bottom>
+        <BorderPane styleClass="action-buttons">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+
+            <left>
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Button fx:id="btnSchedule" onAction="#navigateBack" styleClass="button-raised, button-primary" text="Navigate Back">
+                    </Button>
+                    <Button fx:id="btnCancel" onAction="#handleCancelAction" styleClass="button-raised, button-danger" text="Annuler">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="TIMES" size="16" />
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnView" onAction="#handleViewAction" styleClass="button-raised, button-info" text="Voir détails">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="INFO_CIRCLE" size="16" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </left>
+
+            <right>
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Button onAction="#handlePreviousPage" styleClass="button-raised, button-secondary" text="Précédent">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="CHEVRON_LEFT" size="16" />
+                        </graphic>
+                    </Button>
+                    <Button onAction="#handleNextPage" styleClass="button-raised, button-secondary" text="Suivant">
+                        <graphic>
+                            <FontAwesomeIconView glyphName="CHEVRON_RIGHT" size="16" />
+                        </graphic>
+                    </Button>
+                </HBox>
+            </right>
+        </BorderPane>
+    </bottom>
+</BorderPane>

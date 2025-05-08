@@ -1,0 +1,24 @@
+@FXML
+public void initialize() {
+    // Centrage du contenu pour toutes les colonnes
+    contentColumn.setCellFactory(tc -> {
+        TableCell<YourDataModel, String> cell = new TableCell<>();
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setAlignment(Pos.CENTER);
+        return cell;
+    });
+
+    dateColumn.setCellFactory(tc -> {
+        TableCell<YourDataModel, String> cell = new TableCell<>();
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setAlignment(Pos.CENTER);
+        return cell;
+    });
+
+    doctorColumn.setCellFactory(tc -> {
+        TableCell<YourDataModel, String> cell = new TableCell<>();
+        cell.setTextAlignment(TextAlignment.CENTER);
+        cell.setAlignment(Pos.CENTER);
+        return cell;
+    });
+}

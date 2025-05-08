@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenStreetMap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
+            background-color: #f0f0f0;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    console.log("Initializing Leaflet map...");
+    let map = L.map('map', {
+        center: [36.8065, 10.1815], // Centré sur Tunis
+        zoom: 12,
+        zoomControl: true
+    }).on('load', function() {
+        console.log("Map loaded successfully");
+    });
+
+    let osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19,
+        tileSize: 256,
+        zoomOffset: 0
+    }).on('tileload', function() {
+        console.log("OSM tile loaded");
+    }).on('tileerror', function(error) {
+        console.error("Failed to load OSM tile: ", error);
+        alert("Erreur de chargement des tuiles de la carte.");
+    });
+
+    osmLayer.addTo(map);
+
+    let marker;
+
+    // Initialiser le marqueur par défaut
+    function initMarker() {
+        try {
+            let lat = 36.8065; // Tunis par défaut
+            let lng = 10.1815;
+            let latlng = L.latLng(lat, lng);
+            marker = L.marker(latlng).addTo(map);
+            marker.bindPopup("Lieu inconnu").openPopup();
+            map.setView(latlng, 12);
+            console.log("Default marker initialized at: lat=" + lat + ", lng=" + lng);
+        } catch (error) {
+            console.error("Error initializing marker: " + error.message);
+            alert("Erreur lors de l'initialisation du marqueur : " + error.message);
+        }
+    }
+
+    initMarker();
+
+    function setMarker(lat, lng, location) {
+        try {
+            if (isNaN(lat) || isNaN(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+                console.error("Invalid coordinates in setMarker: lat=" + lat + ", lng=" + lng);
+                alert("Coordonnées invalides : latitude=" + lat + ", longitude=" + lng);
+                return;
+            }
+
+            let latlng = L.latLng(lat, lng);
+            if (marker) {
+                marker.setLatLng(latlng);
+            } else {
+                marker = L.marker(latlng).addTo(map);
+            }
+
+            location = (typeof location === 'string' && location.trim()) ? location : "Lieu inconnu";
+            marker.bindPopup(location).openPopup();
+
+            map.setView(latlng, 12);
+            console.log("Marker set and map centered to: lat=" + lat + ", lng=" + lng + ", location=" + location);
+        } catch (error) {
+            console.error("Error in setMarker: " + error.message);
+            alert("Erreur lors de la mise à jour du marqueur : " + error.message);
+        }
+    }
+
+    map.on('click', function(e) {
+        try {
+            let lat = e.latlng.lat;
+            let lng = e.latlng.lng;
+            console.log("Map clicked at: lat=" + lat + ", lng=" + lng);
+
+            if (isNaN(lat) || isNaN(lng) || lat < -90 || lat > 90 || lng < -180 || lng > 180) {
+                console.error("Invalid coordinates on click: lat=" + lat + ", lng=" + lng);
+                alert("Coordonnées invalides lors du clic : latitude=" + lat + ", longitude=" + lng);
+                return;
+            }
+
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erreur réseau : " + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let placeName = data.address.city || data.address.town || data.address.village || data.address.county || data.address.road || "Lieu inconnu";
+                    console.log("Geocoding result: " + placeName);
+                    marker.bindPopup(placeName).openPopup();
+                    if (window.javafxCallback && typeof window.javafxCallback.setLocation === 'function') {
+                        window.javafxCallback.setLocation(lat, lng, placeName);
+                    } else {
+                        console.error("javafxCallback.setLocation is not available");
+                        alert("Erreur : impossible de communiquer avec l'application Java.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Geocoding error: " + error.message);
+                    let fallbackName = "Lieu inconnu";
+                    marker.bindPopup(fallbackName).openPopup();
+                    if (window.javafxCallback && typeof window.javafxCallback.setLocation === 'function') {
+                        window.javafxCallback.setLocation(lat, lng, fallbackName);
+                    }
+                });
+
+            map.setView(e.latlng, 12);
+        } catch (error) {
+            console.error("Error in map click handler: " + error.message);
+            alert("Erreur lors du clic sur la carte : " + error.message);
+        }
+    });
+
+    console.log("Map initialization complete");
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BackendController" prefWidth="800" prefHeight="600">
+
+    <!-- Navbar -->
+    <top>
+        <HBox spacing="20" style="-fx-background-color: #f4f4f4;" alignment="CENTER_LEFT">
+            <children>
+                <Label text="Admin Dashboard">
+                    <font>
+                        <Font name="System Bold" size="18.0"/>
+                    </font>
+                </Label>
+
+                <!-- 🔽 Label pour le nom de l'utilisateur -->
+                <Label fx:id="labelNomUtilisateur" text="Bienvenue, ..." />
+
+                <HBox HBox.hgrow="ALWAYS"/>
+                <Button text="Logout" onAction="#logout" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-padding: 6 12;" />
+            </children>
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20" />
+            </padding>
+        </HBox>
+
+    </top>
+
+    <!-- Sidebar -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #2c3e50;" prefWidth="200.0" alignment="TOP_LEFT">
+            <children>
+                <Button text="Liste Demandes" onAction="#goToListeDemandes" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button text="Liste Users" onAction="#goToListeUsers" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button text="Evenement" onAction="#goToEvent" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" />
+                <Button text="Categorie" onAction="#goToCategory" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;" />
+
+            </children>
+            <padding>
+                <Insets top="20" left="10"/>
+            </padding>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <AnchorPane>
+            <children>
+                <Label layoutX="200.0" layoutY="150.0" text="Bienvenue dans l'espace Admin">
+                    <font>
+                        <Font size="24.0"/>
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

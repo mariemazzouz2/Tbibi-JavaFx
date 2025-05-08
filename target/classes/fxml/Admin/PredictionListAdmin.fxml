@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.14" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Admin.PredictionListAdminController">
+    <stylesheets>
+        <URL value="@../../Styles.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <Label fx:id="titleLabel" styleClass="title-label" text="Liste des Prédictions" />
+                <Label fx:id="dossierIdLabel" text="Dossier ID: " />
+                <TableView fx:id="predictionTable" prefHeight="300.0" prefWidth="760.0">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="ID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="id" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="100.0" text="Hypertension">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="hypertension" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.0" text="Maladie Cardiaque">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="heart_disease" /> <!-- Changed to match getter -->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.0" text="Tabagisme">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="smoking_history" /> <!-- Changed to match getter -->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="75.0" text="IMC">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="bmi" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="100.0" text="Niveau HbA1c">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="hbA1c_level" /> <!-- Changed to match getter -->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="120.0" text="Glucose Sanguin">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="bloodGlucoseLevel" /> <!-- Already correct -->
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="100.0" text="Diabète">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="diabete" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <!-- Temporarily remove datePrediction column since the field is missing -->
+                        <!-- <TableColumn prefWidth="100.0" text="Date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="datePrediction" />
+                            </cellValueFactory>
+                        </TableColumn> -->
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button fx:id="ajouterButton" onAction="#ajouterPrediction" styleClass="button" text="Ajouter" />
+                        <Button fx:id="modifierButton" onAction="#modifierPrediction" styleClass="button" text="Modifier" />
+                        <Button fx:id="supprimerButton" onAction="#supprimerPrediction" styleClass="button" text="Supprimer" />
+                        <Button onAction="#fermer" styleClass="button" text="Fermer" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>reCAPTCHA JavaFX</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+<form id="captchaForm">
+    <div class="g-recaptcha" data-sitekey="6Lc6ZeUqAAAAAKxHQy9II6tof5ZbcSZZFlkS0yXn" data-callback="captchaCallback"></div>
+</form>
+
+<script>
+    function captchaCallback(response) {
+        // Envoie la réponse au JavaFX WebEngine via un URI spécial
+        window.location.href = "captcha://response?token=" + response;
+    }
+</script>
+</body>
+</html>

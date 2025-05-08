@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<VBox spacing="16.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Admin.FormConsultationController">
+    <stylesheets>
+        <URL value="@../../Styles.css" />
+    </stylesheets>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
+
+    <Label text="Nouvelle Consultation" styleClass="title-label" />
+
+    <GridPane hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="100" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <Label text="Type:" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+        <ChoiceBox fx:id="typeChoiceBox" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+        <Label text="Status:" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+        <ChoiceBox fx:id="statusChoiceBox" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+        <Label text="Date:" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+        <DatePicker fx:id="datePicker" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+        <Label text="Heure:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+        <HBox spacing="10" GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <ComboBox fx:id="heureComboBox" prefWidth="100" />
+            <ComboBox fx:id="minuteComboBox" prefWidth="100" />
+        </HBox>
+
+        <Label text="Médecin:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+        <ComboBox fx:id="medecinComboBox" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+        <Label text="Patient:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+        <ComboBox fx:id="patientComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1" />
+
+        <Label text="Lien Meet:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+        <TextField fx:id="meetLinkTextField" GridPane.rowIndex="6" GridPane.columnIndex="1" />
+    </GridPane>
+
+    <Label text="Commentaire:" />
+    <TextArea fx:id="commentaireTextArea" wrapText="true" prefRowCount="4" />
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button fx:id="cancelButton" text="Annuler" styleClass="button-secondary" onAction="#cancel" />
+        <Button fx:id="saveButton" text="Enregistrer" styleClass="button-primary" onAction="#saveConsultation" />
+    </HBox>
+</VBox>

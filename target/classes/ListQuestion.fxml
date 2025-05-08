@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.net.URL?>
+<?import javafx.scene.shape.SVGPath?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ListQuestionController"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #f7f9fc;">
+    <!-- Top Navigation Bar -->
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 10 20 10 20; -fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;"
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        <VBox alignment="CENTER_LEFT">
+            <ImageView fitHeight="40" fitWidth="100" pickOnBounds="true">
+                <image>
+                    <Image url="@assets/logo2.jpg" />
+                </image>
+            </ImageView>
+            <Label text="Accédez aux soins toute simplicité !" style="-fx-font-size: 10px; -fx-text-fill: #666666;" />
+        </VBox>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button text="Home" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px;" />
+        <Button text="Consultation" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px;" />
+        <Button fx:id="forum" onAction="#goForum" text="Forum" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px;" />
+        <Button onAction="#goEvement" text="Evenement" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+        <Button text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px;" />
+        <Button text="Produit" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px;" />
+        <Button text="Book Appointment" style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8 16; -fx-background-radius: 5;" />
+        <Button text="Logout" onAction="#logout" style="-fx-background-color: transparent; -fx-text-fill: #333333; -fx-font-size: 14px; -fx-padding: 6 12;" />
+    </HBox>
+
+    <!-- Main Content -->
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="70" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.bottomAnchor="80">
+        <!-- Header -->
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <Label text="MES QUESTIONS" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #5c6bc0;" />
+            <Pane HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Rechercher par titre ou spécialité..."
+                       prefWidth="200"
+                       style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-font-size: 14px; -fx-padding: 8;" />
+            <!-- Sorting Controls -->
+            <ComboBox fx:id="sortComboBox" promptText="Trier par" prefWidth="150"
+                      style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 5; -fx-font-size: 14px; -fx-padding: 8;" />
+            <Button fx:id="sortOrderButton" text="⬆" onAction="#handleSort"
+                    style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-size: 14px; -fx-border-radius: 5;" />
+            <Button fx:id="addButton" text="+ Poser une nouvelle question"
+                    style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 5;"
+                    onAction="#handleAddQuestion">
+                <padding>
+                    <Insets top="8" right="16" bottom="8" left="16" />
+                </padding>
+            </Button>
+        </HBox>
+
+        <!-- ScrollPane contenant la pagination -->
+        <ScrollPane fx:id="questionsScrollPane" fitToWidth="true" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <Pagination fx:id="pagination" style="-fx-page-information-visible: false;"/>
+            </content>
+        </ScrollPane>
+    </VBox>
+
+    <!-- Chatbot Bubble -->
+    <Button fx:id="chatbotBubble"
+            text="💬"
+            style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-size: 24px; -fx-shape: 'M 0, 0 a 25,25 0 1,0 50,0 a 25,25 0 1,0 -50,0'; -fx-background-radius: 50;"
+            prefWidth="60" prefHeight="60"
+            onAction="#toggleChatWindow"
+            AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="20" />
+
+    <!-- Chat Window (Initially Hidden) -->
+    <VBox fx:id="chatWindow"
+          visible="false"
+          prefWidth="300" prefHeight="400"
+          style="-fx-background-color: #ffffff; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 2);"
+          AnchorPane.bottomAnchor="90" AnchorPane.rightAnchor="20">
+        <Label text="Medical Chatbot"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #5c6bc0; -fx-padding: 0 0 10 0;" />
+        <TextArea fx:id="chatHistory"
+                  editable="false"
+                  wrapText="true"
+                  prefHeight="300"
+                  style="-fx-control-inner-background: #f1f8e9; -fx-font-size: 13px; -fx-font-family: 'Arial'; -fx-text-fill: #1b5e20;" />
+        <HBox spacing="5" alignment="CENTER">
+            <TextField fx:id="chatInput"
+                       promptText="Posez une question médicale..."
+                       prefWidth="220"
+                       style="-fx-background-radius: 5; -fx-padding: 5;" />
+            <Button fx:id="sendButton"
+                    text="Envoyer"
+                    style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-background-radius: 5;"
+                    onAction="#handleSendMessage" />
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,172 @@
+/* Thème fantastique simplifié pour un style masculin */
+.window {
+    -fx-background-color: #0F1419;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A9A9A9;
+    -fx-font-weight: 500;
+}
+
+.search-field {
+    -fx-background-color: #1C2526;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #FF4500;
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-font-size: 14px;
+    -fx-text-fill: #D3D3D3;
+    -fx-prompt-text-fill: #A9A9A9;
+}
+
+.search-field:focused {
+    -fx-border-color: #4682B4;
+    -fx-border-width: 2;
+}
+
+.action-button {
+    -fx-background-color: #FF4500;
+    -fx-text-fill: #0F1419;
+    -fx-background-radius: 15;
+    -fx-padding: 6 15;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #4682B4;
+}
+
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.card {
+    -fx-background-color: #1C2526;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #FF4500;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+}
+
+.card .label {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 14px;
+}
+
+.card .text-area {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-size: 14px;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.card_event_container {
+    -fx-padding: 10;
+}
+
+.card_event_container .vbox {
+    -fx-pref-width: 220;
+    -fx-pref-height: 280;
+    -fx-min-width: 220;
+    -fx-max-width: 220;
+    -fx-min-height: 280;
+    -fx-max-height: 280;
+    -fx-background-color: #1C2526;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #4682B4;
+    -fx-border-width: 1;
+}
+
+.card_event_container .vbox:hover {
+    -fx-border-color: #FFD700;
+}
+
+.card_event_container .vbox .image-view {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #FF4500;
+    -fx-border-width: 1;
+}
+
+/* Styles pour les labels dans les cartes */
+.card_event_container .vbox .label {
+    -fx-text-fill: #D3D3D3;
+    -fx-font-weight: bold;
+}
+
+.card_event_container .vbox .card_event_subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A9A9A9;
+}
+
+.card_event_container .vbox .card_event_coord {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A9A9A9;
+}
+
+/* Style pour le bouton "Voir les détails" */
+.card_event_container .vbox .button {
+    -fx-background-color: #FF4500;
+    -fx-text-fill: #0F1419;
+    -fx-background-radius: 20;
+    -fx-pref-width: 150;
+    -fx-pref-height: 35;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.card_event_container .vbox .button:hover {
+    -fx-background-color: #4682B4;
+}
+
+/* Styles pour CalendarView.fxml */
+.calendar-webview {
+    -fx-background-color: #1C2526;
+    -fx-border-color: #FF4500;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-width: 1;
+}
+
+/* Styles pour EventDetails.fxml */
+.card_event_image {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #FF4500;
+    -fx-border-width: 1;
+}
+
+.card_event_title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D3D3D3;
+}
+
+.card_event_coord {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A9A9A9;
+}
+
+.card_event_subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A9A9A9;
+}
+
+.icon {
+    -fx-font-size: 16px;
+}

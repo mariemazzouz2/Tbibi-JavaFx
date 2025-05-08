@@ -1,0 +1,117 @@
+/* Style médical professionnel */
+.root {
+    -fx-padding: 20px;
+}
+
+.table-view, .text-field, .button {
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2d5985;
+    -fx-padding: 10 0 0 0;
+}
+
+.medical-search {
+    -fx-background-color: white;
+    -fx-border-color: #cfe2f3;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #a7c0d6;
+}
+
+.medical-search:focused {
+    -fx-border-color: #2d5985;
+    -fx-border-width: 1.5px;
+}
+
+.medical-table {
+    -fx-background-color: white;
+    -fx-border-color: #d6e4f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.medical-table .column-header-background {
+    -fx-background-color: #e6f0f9;
+    -fx-border-color: #d6e4f0;
+    -fx-border-width: 0 0 1px 0;
+}
+
+.medical-table .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: #d6e4f0;
+    -fx-border-width: 0 1px 0 0;
+    -fx-padding: 10px 15px;
+}
+
+.medical-table .column-header .label {
+    -fx-text-fill: #2d5985;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.medical-table .table-row-cell {
+    -fx-border-color: #e6f0f9;
+    -fx-border-width: 0 0 1px 0;
+    -fx-background-color: white;
+}
+
+.medical-table .table-row-cell:odd {
+    -fx-background-color: #f5f9fd;
+}
+
+.medical-table .table-row-cell:hover {
+    -fx-background-color: #edf4fb;  /* bleu très léger */
+    -fx-cursor: hand;
+}
+
+
+.medical-table .table-row-cell:selected {
+    -fx-background-color: #bbdefb;
+    -fx-text-fill: black;
+}
+
+.medical-table .table-cell {
+    -fx-padding: 10px 15px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.empty-table-label {
+    -fx-text-fill: #8fa8c2;
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+}
+
+/* Scrollbar discrète */
+.medical-table .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.medical-table .scroll-bar:vertical .thumb {
+    -fx-background-color: #cfe2f3;
+    -fx-background-radius: 2px;
+}
+
+.reply-button {
+    -fx-background-color: #2d5985;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 5 15;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
+    -fx-transition: all 0.3s ease;
+}

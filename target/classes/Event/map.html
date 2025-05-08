@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Online Leaflet resources -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Local Leaflet resources (uncomment if using local files) -->
+    <!-- <link rel="stylesheet" href="/leaflet.css" /> -->
+    <!-- <script src="/leaflet.js"></script> -->
+    <style>
+        #map {
+            height: 400px;
+            width: 600px;
+            border: 1px solid #ccc; /* Added for visibility */
+            background-color: #f0f0f0; /* Fallback background */
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    console.log("Initializing Leaflet map...");
+    try {
+        var map = L.map('map').setView([36.8065, 10.1815], 10); // Default: Tunis, Tunisia
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        console.log("Map rendered successfully");
+
+        var marker = null;
+
+        map.on('click', function(e) {
+            console.log("Map clicked at: ", e.latlng);
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+
+            // Update or place marker
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+
+            // Reverse geocode to get place name
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    var placeName = data.display_name || 'Lieu inconnu';
+                    console.log("Geocoded place: ", placeName);
+                    if (window.javafxCallback && typeof window.javafxCallback.setLocation === 'function') {
+                        window.javafxCallback.setLocation(lat, lng, placeName);
+                    } else {
+                        console.error("javafxCallback is not defined or setLocation is not a function");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during reverse geocoding:', error);
+                    if (window.javafxCallback && typeof window.javafxCallback.setLocation === 'function') {
+                        window.javafxCallback.setLocation(lat, lng, 'Lieu inconnu');
+                    }
+                });
+        });
+    } catch (error) {
+        console.error("Error rendering map: ", error);
+    }
+</script>
+</body>
+</html>

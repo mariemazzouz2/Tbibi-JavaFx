@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Patient.PatientConsultationFormController"
+            styleClass="root" stylesheets="@../../styles/modern.css">
+
+    <top>
+        <VBox styleClass="header-section" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Planifier une consultation" styleClass="header-label"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20" styleClass="content-section">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- Consultation Details -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Détails de la consultation" styleClass="section-header"/>
+                <GridPane hgap="15" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    
+                    <!-- Type Selection -->
+                    <Label text="Type de consultation:" styleClass="stat-label" 
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboType" promptText="Sélectionnez un type" 
+                             GridPane.rowIndex="0" GridPane.columnIndex="1" 
+                             GridPane.fillWidth="true" maxWidth="Infinity"/>
+                    
+                    <!-- Doctor Selection -->
+                    <Label text="Médecin:" styleClass="stat-label" 
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboMedecin" promptText="Sélectionnez un médecin" 
+                             GridPane.rowIndex="1" GridPane.columnIndex="1" 
+                             GridPane.fillWidth="true" maxWidth="Infinity"/>
+                    
+                    <!-- Date Selection -->
+                    <Label text="Date:" styleClass="stat-label" 
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="datePicker" promptText="Sélectionnez une date" 
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" 
+                               GridPane.fillWidth="true" maxWidth="Infinity"/>
+                    
+                    <!-- Time Selection -->
+                    <Label text="Heure:" styleClass="stat-label" 
+                           GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboHour" promptText="Sélectionnez une heure" 
+                             GridPane.rowIndex="3" GridPane.columnIndex="1" 
+                             GridPane.fillWidth="true" maxWidth="Infinity"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Comment Section -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Commentaire / Symptômes" styleClass="section-header"/>
+                <TextArea fx:id="textCommentaire" 
+                         promptText="Décrivez brièvement la raison de votre consultation..." 
+                         wrapText="true" VBox.vgrow="ALWAYS"
+                         styleClass="comments-area"/>
+            </VBox>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="action-buttons">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button fx:id="btnCancel" text="Annuler" onAction="#handleCancel" 
+                    styleClass="button-flat">
+                <graphic>
+                    <FontAwesomeIconView glyphName="TIMES" size="16"/>
+                </graphic>
+            </Button>
+            <Button fx:id="btnSave" text="Planifier" onAction="#handleSave" 
+                    styleClass="button-raised, button-primary">
+
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane> 

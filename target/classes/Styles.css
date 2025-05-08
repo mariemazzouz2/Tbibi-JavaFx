@@ -1,0 +1,294 @@
+/* Style global pour l'arrière-plan */
+.root {
+    -fx-background-color: #ffff; /* Blanc (corrigé : #ffffff pour plus de clarté) */
+    -fx-font-family: "Arial";
+}
+
+/* Style pour les labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+/* Style pour les titres */
+.title-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Style pour les boutons (ancien style) */
+.button {
+    -fx-background-color: #ffff; /* Blanc (corrigé : #ffffff) */
+    -fx-text-fill: Blue;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Bleu au survol */
+}
+
+/* Style pour les boutons transparents */
+.button-transparent {
+    -fx-background-color: transparent; /* Arrière-plan transparent */
+    -fx-text-fill: white; /* Texte blanc pour la lisibilité */
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: white; /* Bordure blanche pour la visibilité */
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.button-transparent:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Légère opacité au survol */
+}
+
+/* Style pour les champs de texte */
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-padding: 5px;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+}
+
+/* Style pour les conteneurs (VBox, HBox) */
+.vbox, .hbox {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+}
+
+/* Style pour un VBox transparent */
+.vbox-transparent {
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-background-color: transparent; /* Arrière-plan transparent */
+    -fx-padding: 20px;
+}
+
+/* Ajout de styles pour d'autres éléments spécifiques à DossierMedicalListDoctor.fxml */
+
+/* Style pour le TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f4f4f4; /* Gris clair pour les en-têtes */
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #333333;
+}
+
+.table-view .table-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #333333;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 5px;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9; /* Couleur de fond pour les lignes impaires */
+}
+
+.table-row-cell:even {
+    -fx-background-color: white; /* Couleur de fond pour les lignes paires */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db; /* Bleu pour la ligne sélectionnée */
+    -fx-text-fill: white;
+}
+
+/* Style pour le ChoiceBox */
+.choice-box {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 13px;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #3498db;
+}
+
+/* Style pour le DatePicker */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+    -fx-background-radius: 3px;
+    -fx-font-size: 13px;
+}
+
+.date-picker .text-field {
+    -fx-background-color: white;
+}
+
+/* Style pour les éléments de pagination */
+#pageLabel {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-font-family: "Arial";
+}
+
+/* Styles pour les cartes */
+.card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+    -fx-background-radius: 8px;
+    -fx-padding: 16px;
+}
+
+.card-id {
+    -fx-font-weight: bold;
+    -fx-text-fill: #666666;
+}
+
+.card-section-title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.status-label {
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 4px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+/* Styles pour les différents statuts */
+.status-pending {
+    -fx-background-color: #fff3cd;
+    -fx-text-fill: #856404;
+}
+
+.status-confirmed {
+    -fx-background-color: #cce5ff;
+    -fx-text-fill: #004085;
+}
+
+.status-completed {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.status-cancelled {
+    -fx-background-color: #f8d7da;
+    -fx-text-fill: #721c24;
+}
+
+.date-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.consultation-id {
+    -fx-font-weight: bold;
+    -fx-text-fill: #666666;
+}
+
+/* Styles pour les boutons dans les cartes */
+.button-primary {
+    -fx-background-color: #007bff;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button-primary:hover {
+    -fx-background-color: #0056b3;
+}
+
+.button-secondary {
+    -fx-background-color: #6c757d;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button-secondary:hover {
+    -fx-background-color: #545b62;
+}
+
+.button-danger {
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button-danger:hover {
+    -fx-background-color: #c82333;
+}
+
+/* Styles pour les onglets */
+.tab-pane {
+    -fx-background-color: #f8f9fa;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 5 5 0 5;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #e9ecef;
+    -fx-padding: 8 15;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #dee2e6;
+}
+
+.tab-pane .tab-header-background {
+    -fx-background-color: #dee2e6;
+}
+
+.tab .tab-label {
+    -fx-text-fill: #495057;
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #007bff;
+    -fx-font-weight: bold;
+}

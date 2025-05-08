@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<?import java.lang.String?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.Evenement.ModifierEvenement"
+            fitToWidth="true"
+            styleClass="scroll-pane"
+            stylesheets="@/Event/style.css">
+    <content>
+        <VBox spacing="20" styleClass="window" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="30" right="30" bottom="30" left="30"/>
+            </padding>
+
+            <Label text="Modifier un Événement" styleClass="title"/>
+
+            <GridPane vgap="15" hgap="15" styleClass="card">
+                <!-- Titre -->
+                <Label text="Titre de l'événement :" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <TextField fx:id="titreField" promptText="Entrez le titre"
+                           styleClass="search-field"
+                           GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <!-- Description -->
+                <Label text="Description :" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <TextArea fx:id="descriptionField" promptText="Entrez la description" wrapText="true" prefHeight="100"
+                          styleClass="search-field"
+                          GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- Date début -->
+                <Label text="Date de début :" GridPane.rowIndex="2" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <DatePicker fx:id="dateDebutPicker" styleClass="search-field"
+                            GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <!-- Date fin -->
+                <Label text="Date de fin :" GridPane.rowIndex="3" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <DatePicker fx:id="dateFinPicker" styleClass="search-field"
+                            GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <!-- Lieu -->
+                <Label text="Lieu :" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <TextField fx:id="lieuField" promptText="Entrez le lieu"
+                           styleClass="search-field"
+                           GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <!-- Latitude -->
+                <Label text="Latitude :" GridPane.rowIndex="5" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <TextField fx:id="latitudeField" promptText="Ex: 36.8065"
+                           styleClass="search-field"
+                           GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                <!-- Longitude -->
+                <Label text="Longitude :" GridPane.rowIndex="6" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <TextField fx:id="longitudeField" promptText="Ex: 10.1815"
+                           styleClass="search-field"
+                           GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                <!-- Statut -->
+                <Label text="Statut :" GridPane.rowIndex="7" GridPane.columnIndex="0"
+                       styleClass="subtitle"/>
+                <ComboBox fx:id="statutComboBox" promptText="Sélectionnez le statut"
+                          styleClass="search-field"
+                          GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <!-- WebView et bouton pour la carte -->
+            <HBox spacing="50">
+                <Label text="Carte de l'emplacement :" styleClass="subtitle"/>
+                <VBox spacing="10">
+                    <WebView fx:id="mapView" prefHeight="400" prefWidth="600">
+                        <styleClass>
+                            <String fx:value="calendar-webview"/>
+                        </styleClass>
+                    </WebView>
+                    <Button fx:id="mapsButton" text="Entrer les coordonnées" onAction="#onMapsClick"
+                            styleClass="action-button"/>
+                </VBox>
+            </HBox>
+
+            <!-- Boutons -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Annuler" onAction="#annuler" styleClass="action-button"/>
+                <Button text="Modifier" onAction="#modifierEvenement" styleClass="action-button"/>
+            </HBox>
+        </VBox>
+    </content>
+</ScrollPane>

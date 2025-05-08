@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FaceRecognitionController">
+    <ImageView fx:id="cameraView" fitHeight="400" fitWidth="400" />
+    <Button text="Capturer et Vérifier" onAction="#handleCaptureAndSend"/>
+</VBox>

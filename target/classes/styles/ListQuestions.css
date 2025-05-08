@@ -1,0 +1,154 @@
+/* === COULEURS PRINCIPALES === */
+.root {
+    -fx-primary: #2d5985;
+    -fx-secondary: #3a6b9c;
+    -fx-accent: #2e7d32;
+    -fx-danger: #c62828;
+    -fx-light: #f8f9fa;
+    -fx-dark: #343a40;
+}
+
+/* === TABLEAU === */
+.table-view {
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f2f2f2;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: -fx-primary;
+    -fx-text-background-color: white;
+}
+
+/* EN-TÊTES DE COLONNE */
+.table-view .column-header-background {
+    -fx-background-color: -fx-primary;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: transparent transparent derive(-fx-primary, 20%) transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* === BOUTONS === */
+.action-button {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.action-button:hover {
+    -fx-background-color: -fx-secondary;
+}
+
+.delete-button {
+    -fx-background-color: -fx-danger;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.delete-button:hover {
+    -fx-background-color: #e53935;
+}
+
+.add-button {
+    -fx-background-color: -fx-accent;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+
+.add-button:hover {
+    -fx-background-color: #388e3c;
+}
+
+/* === BARRE DE RECHERCHE === */
+.search-field {
+    -fx-prompt-text-fill: #757575;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #ced4da;
+    -fx-border-width: 1;
+    -fx-padding: 5 10;
+}
+
+.search-field:focused {
+    -fx-border-color: -fx-primary;
+}
+
+/* === LABEL VIDE === */
+.empty-table-label {
+    -fx-font-size: 14;
+    -fx-text-fill: #666;
+}
+
+.progress-indicator {
+    -fx-progress-color: -fx-primary;
+}
+
+/* === TITRE PRINCIPAL === */
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary;
+}
+
+/* === CONTAINER PRINCIPAL === */
+VBox {
+    -fx-spacing: 15;
+    -fx-padding: 20;
+}
+
+/* === STYLE POUR LA CARTE DE QUESTION === */
+.question-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 6, 0, 0, 2);
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 10;
+}
+
+/* TITRE DE LA QUESTION */
+.question-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-dark;
+}
+
+/* SPÉCIALITÉ ET DATE */
+.question-meta {
+    -fx-text-fill: #6c757d;
+    -fx-font-size: 12px;
+}
+
+/* STATUT (public/privé) */
+.question-status {
+    -fx-text-fill: #2e7d32;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+/* CONTENEUR DE BOUTONS */
+.button-group {
+    -fx-spacing: 10;
+    -fx-alignment: center-left;
+}

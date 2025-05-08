@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.AnalyseDetailsController">
+    <stylesheets>
+        <URL value="@../../Styles.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="10.0" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefWidth="360.0" styleClass="vbox">
+            <children>
+                <Label text="Détails de l'Analyse" styleClass="title-label" />
+                <Label fx:id="dossierIdLabel" text="Dossier ID: " />
+                <Label fx:id="typeLabel" text="Type: " />
+                <Label fx:id="dateAnalyseLabel" text="Date Analyse: " />
+                <Label fx:id="donneesAnalyseLabel" text="Données Analyse: " />
+                <Label fx:id="diagnosticLabel" text="Diagnostic: " />
+                <Button text="Fermer" onAction="#closeDetails" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

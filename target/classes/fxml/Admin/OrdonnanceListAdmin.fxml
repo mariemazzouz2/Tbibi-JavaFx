@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Admin.OrdonnanceListAdminController">
+    <stylesheets>
+        <URL value="@../../Styles.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="15.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <Label text="Liste des Ordonnances" styleClass="title-label" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Ajouter" onAction="#addOrdonnance" styleClass="button-primary" />
+                    <Button text="Fermer" onAction="#close" styleClass="button" />
+                </HBox>
+                
+                <HBox spacing="10.0" alignment="CENTER_RIGHT">
+                    <Label text="Recherche:" />
+                    <TextField fx:id="searchField" prefWidth="250.0" promptText="Rechercher..." />
+                </HBox>
+                
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <FlowPane fx:id="ordonnancesContainer" hgap="15.0" vgap="15.0">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10" />
+                        </padding>
+                    </FlowPane>
+                </ScrollPane>
+                
+                <HBox spacing="10.0" alignment="CENTER">
+                    <Button fx:id="prevPageButton" text="&lt; Précédent" onAction="#prevPage" />
+                    <Label fx:id="pageLabel" text="Page 1 / 1" />
+                    <Button fx:id="nextPageButton" text="Suivant &gt;" onAction="#nextPage" />
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

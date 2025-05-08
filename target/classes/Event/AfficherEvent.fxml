@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Evenement.AfficherEvent" prefHeight="600.0" prefWidth="800.0">
+    <top>
+        <HBox spacing="20" alignment="CENTER_LEFT" style="-fx-padding: 10; -fx-background-color: white;">
+            <ImageView fitHeight="50" fitWidth="250" pickOnBounds="true">
+                <image>
+                    <Image url="@/assets/logo2.jpg" />
+                </image>
+            </ImageView>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Home" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button onAction="#gotoconsultations" text="Consultation" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button fx:id="forum" onAction="#goForum" text="Forum" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button text="Evenement" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button text="Produit" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button text="Book Appointment" onAction="#Bookapt" style="-fx-background-color: #007BFF; -fx-text-fill: white; -fx-padding: 8 16; -fx-background-radius: 5;" />
+            <Label fx:id="labelNomUtilisateur" styleClass="user-info" text="Malak">
+                <graphic>
+                    <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z" fill="black" />
+                </graphic>
+            </Label>
+            <Button text="Logout" onAction="#logout" style="-fx-text-fill: black; -fx-padding: 6 12;" />
+        </HBox>
+    </top>
+    <center>
+        <Pane fx:id="mainRouter" prefHeight="550.0" prefWidth="800.0">
+            <VBox fx:id="rootVBox" spacing="15" styleClass="window" stylesheets="@/Event/style.css">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Liste des Événements" styleClass="title"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="searchField" promptText="Rechercher un événement..." styleClass="search-field" prefWidth="200"/>
+                    <ComboBox fx:id="sortComboBox" promptText="Trier par..." styleClass="search-field" prefWidth="150"/>
+                    <Button fx:id="calendarButton" text="Voir le Calendrier" onAction="#onCalendarButtonClick" styleClass="action-button"/>
+                </HBox>
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="scroll-pane">
+                    <content>
+                        <FlowPane fx:id="cardsContainer" styleClass="card_event_container" hgap="15" vgap="15" prefWrapLength="760" alignment="TOP_LEFT"/>
+                    </content>
+                </ScrollPane>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button fx:id="previousPageButton" text="Précédent" onAction="#onPreviousPage" styleClass="action-button"/>
+                    <Label fx:id="pageInfoLabel" text="Page 1 de 1" styleClass="subtitle"/>
+                    <Button fx:id="nextPageButton" text="Suivant" onAction="#onNextPage" styleClass="action-button"/>
+                </HBox>
+                <VBox fx:id="chatBox" spacing="10" VBox.vgrow="NEVER">
+                    <TextArea fx:id="chatArea" editable="false" prefHeight="100" wrapText="true"/>
+                    <HBox spacing="5">
+                        <TextField fx:id="chatInput" promptText="Tapez votre message..." HBox.hgrow="ALWAYS"/>
+                        <Button fx:id="sendChatButton" text="Envoyer" onAction="#sendChatMessage"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </Pane>
+    </center>
+</BorderPane>

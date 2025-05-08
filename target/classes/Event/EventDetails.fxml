@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.web.WebView?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controller.Evenement.EvenementDetails"
+      prefWidth="360" maxWidth="360"
+      spacing="10"
+      styleClass="card"
+      stylesheets="@/Event/style.css">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <ImageView fx:id="imageView" fitHeight="150" fitWidth="320" preserveRatio="true" styleClass="card_event_image"/>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="🎉" styleClass="icon"/>
+        <Label fx:id="titreLabel" styleClass="card_event_title" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="📍" styleClass="icon"/>
+        <Label fx:id="lieuLabel" styleClass="card_event_coord" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="📆 Début:" styleClass="icon"/>
+        <Label fx:id="dateDebutLabel" styleClass="card_event_subtitle" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="📅 Fin:" styleClass="icon"/>
+        <Label fx:id="dateFinLabel" styleClass="card_event_subtitle" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="📝" styleClass="icon"/>
+        <Label fx:id="descriptionLabel" styleClass="card_event_subtitle" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="✔" styleClass="icon"/>
+        <Label fx:id="statutLabel" styleClass="card_event_subtitle" wrapText="true"/>
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="🏷" styleClass="icon"/>
+        <Label fx:id="categorieLabel" styleClass="card_event_subtitle" wrapText="true"/>
+    </HBox>
+    <WebView fx:id="mapView" prefWidth="600" prefHeight="600" style="-fx-border-radius: 8; -fx-background-color: #f0f0f0;"/>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button fx:id="backButton" text="Retour" onAction="#onBackClick" styleClass="action-button"/>
+        <Button fx:id="weatherButton" text="Vérifier Météo" onAction="#onWeatherClick" styleClass="action-button"/>
+    </HBox>
+
+</VBox>

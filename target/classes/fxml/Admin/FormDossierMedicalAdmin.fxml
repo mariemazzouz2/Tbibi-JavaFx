@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Admin.DossierMedicalFormController" styleClass="vbox">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="ID Utilisateur :" styleClass="label"/>
+    <TextField fx:id="utilisateurIdField" styleClass="text-field"/>
+
+    <Label text="Date :" styleClass="label"/>
+    <DatePicker fx:id="datePicker" styleClass="date-picker"/>
+
+    <Label text="Fichier :" styleClass="label"/>
+    <TextField fx:id="fichierField" styleClass="text-field"/>
+
+    <Label text="Unité :" styleClass="label"/>
+    <TextField fx:id="uniteField" styleClass="text-field"/>
+
+    <Label text="Mesure :" styleClass="label"/>
+    <TextField fx:id="mesureField" styleClass="text-field"/>
+
+    <HBox spacing="10" alignment="CENTER" styleClass="hbox">
+        <Button fx:id="saveButton" text="Enregistrer" onAction="#save" styleClass="button"/>
+        <Button fx:id="cancelButton" text="Annuler" onAction="#cancel" styleClass="button"/>
+    </HBox>
+</VBox>

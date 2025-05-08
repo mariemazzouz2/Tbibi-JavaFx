@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Doctor.DoctorOrdonnanceViewController"
+            styleClass="root" stylesheets="@../../styles/modern.css">
+
+    <top>
+        <VBox styleClass="header-section" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Prescription Details" styleClass="header-label"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20" styleClass="content-section">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- Basic Information -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Basic Information" styleClass="section-header"/>
+                <GridPane hgap="15" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    
+                    <Label text="Reference:" styleClass="stat-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Label fx:id="labelId" styleClass="stat-label" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Date:" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="labelDate" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Patient:" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="labelPatient" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Prescription Content -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Prescription Details" styleClass="section-header"/>
+                <TextArea fx:id="textDescription" wrapText="true" VBox.vgrow="ALWAYS" 
+                         styleClass="comments-area" editable="false"/>
+            </VBox>
+            
+            <!-- Signature Section -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Signature" styleClass="section-header"/>
+                <ImageView fx:id="imgSignature" fitHeight="100" preserveRatio="true" 
+                          styleClass="signature-image"/>
+            </VBox>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="action-buttons">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Button fx:id="btnClose" text="Close" onAction="#handleClose" styleClass="button-raised, button-primary">
+                <graphic>
+                    <FontAwesomeIconView glyphName="TIMES" size="16"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane> 
