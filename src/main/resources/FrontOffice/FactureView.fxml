@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+
+<BorderPane stylesheets="/styles/invoice-style.css" styleClass="invoice-container"
+            prefHeight="700.0" prefWidth="800.0"
+            minHeight="600.0" minWidth="700.0"
+            maxHeight="-Infinity" maxWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.Controllers.FactureController">
+    <top>
+        <VBox styleClass="invoice-header" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" styleClass="company-info">
+                    <children>
+                        <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/images/logo.png" />
+                            </image>
+                            <effect>
+                                <javafx.scene.effect.DropShadow color="WHITE" height="10" radius="4.5" width="10" />
+                            </effect>
+                        </ImageView>
+                        <VBox spacing="2.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="company-name" text="Tbibi" />
+                                <Label styleClass="company-details" text="123 Esprit, Ariana, Tunisie" />
+                                <Label styleClass="company-details" text="contact@tbibi.com | +216 71 123 456" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="15.0" />
+                            </HBox.margin>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label styleClass="invoice-title" text="FACTURE" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" bottom="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label fx:id="numeroFactureLabel" styleClass="invoice-number" text="N° 12345" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label fx:id="dateLabel" styleClass="invoice-date" text="Date: 29/04/2023" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>
+                <Line startX="0" endX="560" styleClass="separator-line" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </top>
+    <center>
+        <VBox fx:id="contentContainer" styleClass="invoice-content" BorderPane.alignment="CENTER">
+            <children>
+                <HBox styleClass="section-header">
+                    <children>
+                        <Label styleClass="section-title" text="Information Client" />
+                    </children>
+                </HBox>
+                <HBox styleClass="client-info">
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <HBox spacing="5.0">
+                                    <children>
+                                        <Label styleClass="info-label" text="Nom:" />
+                                        <Label fx:id="clientNameLabel" styleClass="info-value" text="John Doe" />
+                                    </children>
+                                </HBox>
+                                <HBox spacing="5.0">
+                                    <children>
+                                        <Label styleClass="info-label" text="Email:" />
+                                        <Label fx:id="clientEmailLabel" styleClass="info-value" text="john.doe@example.com" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox styleClass="section-header">
+                    <children>
+                        <Label styleClass="section-title" text="Détails de la Commande" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="20.0" />
+                    </VBox.margin>
+                </HBox>
+
+                <GridPane styleClass="products-header">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Label text="Produit" GridPane.columnIndex="0" />
+                        <Label text="Quantité" GridPane.columnIndex="1" />
+                        <Label text="Prix" GridPane.columnIndex="2" />
+                        <Label text="Total" GridPane.columnIndex="3" />
+                    </children>
+                </GridPane>
+
+                <ScrollPane fitToWidth="true" styleClass="products-container">
+                    <content>
+                        <VBox fx:id="productsContainer" spacing="5.0" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <VBox styleClass="invoice-footer" BorderPane.alignment="CENTER">
+            <children>
+                <HBox styleClass="summary-section">
+                    <children>
+                        <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Label styleClass="summary-label" text="Sous-total:" />
+                                        <Label fx:id="subtotalLabel" styleClass="summary-value" text="0.00 TND" />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Label styleClass="summary-label" text="TVA (19%):" />
+                                        <Label fx:id="taxLabel" styleClass="summary-value" text="0.00 TND" />
+                                    </children>
+                                </HBox>
+                                <HBox styleClass="total-row" alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Label styleClass="total-label" text="TOTAL:" />
+                                        <Label fx:id="totalLabel" styleClass="total-value" text="0.00 TND" />
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT">
+                                    <children>
+                                        <Label styleClass="status-label" text="Statut:" />
+                                        <Label fx:id="statusLabel" styleClass="status-paid" text="Payé" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox styleClass="notes-section">
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label styleClass="notes-title" text="Notes:" />
+                                <Label styleClass="notes-content" text="Merci pour votre achat! Pour toute assistance, veuillez contacter notre service client." wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="15.0" bottom="15.0" />
+                    </VBox.margin>
+                </HBox>
+
+                <HBox styleClass="actions-section" alignment="CENTER" spacing="15.0">
+                    <children>
+                        <Button fx:id="downloadPdfButton" styleClass="action-button, pdf-button" text="Télécharger PDF" />
+                        <Button fx:id="printButton" styleClass="action-button, print-button" text="Imprimer" />
+                        <Button fx:id="closeButton" styleClass="action-button, close-button" text="Fermer" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>

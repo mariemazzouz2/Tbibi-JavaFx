@@ -16,6 +16,8 @@ public class FrontPatientController {
 
     @FXML
     private Label labelNomUtilisateur;
+    @FXML
+    private Button produitButton;
 
     @FXML
     public void initialize() {
@@ -24,6 +26,32 @@ public class FrontPatientController {
             labelNomUtilisateur.setText( currentUser.getNom());
         }
 
+    }
+    @FXML
+    private void goToProduit() {
+        try {
+            // Chemin vers le fichier FXML des Produits
+            String fxmlPath = "/FrontOffice/FrontOfficeView.fxml";
+            if (getClass().getResource(fxmlPath) == null) {
+                throw new RuntimeException("Impossible de trouver " + fxmlPath + " dans les ressources");
+            }
+
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Produits");
+            stage.setScene(new Scene(root, 800, 600)); // Taille personnalisable
+            stage.setResizable(true);
+            stage.show();
+
+            // Fermer la fenêtre actuelle
+            Stage currentStage = (Stage) produitButton.getScene().getWindow();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void logout(javafx.event.ActionEvent event) {
         SessionManager.getInstance().logout();

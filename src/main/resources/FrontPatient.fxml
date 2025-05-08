@@ -24,7 +24,7 @@
             <Button text="Forum" style="-fx-background-color: transparent; -fx-text-fill: black;" />
             <Button text="Evenement" style="-fx-background-color: transparent; -fx-text-fill: black;" />
             <Button text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: black;" />
-            <Button text="Produit" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+            <Button fx:id="produitButton" text="Produit" style="-fx-background-color: transparent; -fx-text-fill: black;" onAction="#goToProduit"/>
             <Button text="Book Appointment" style="-fx-background-color: #007BFF; -fx-text-fill: white; -fx-padding: 8 16; -fx-background-radius: 5;" />
             <Label fx:id="labelNomUtilisateur" styleClass="user-info" text="Malak">
                 <graphic>
