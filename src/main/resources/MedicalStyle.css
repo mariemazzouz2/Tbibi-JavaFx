@@ -1,0 +1,680 @@
+/* MedicalStyle.css - Style adapté pour un projet de gestion de dossiers médicaux */
+
+/* ======== BASE STYLING ======== */
+.root {
+    -fx-base: #f4f4f4;
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-focus-color: #1E90FF; /* Changed to blue */
+    -fx-accent: #1E90FF; /* Changed to blue */
+}
+
+/* ======== TEXT STYLING ======== */
+.label {
+    -fx-text-fill: #2c3e50;
+}
+
+.title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+
+/* ======== BUTTON STYLING ======== */
+.button {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: derive(#1E90FF, 20%); /* Adjusted for new blue */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.button:pressed {
+    -fx-background-color: derive(#1E90FF, -10%); /* Adjusted for new blue */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 1, 0, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.button-reset {
+    -fx-background-color: #FF7675;
+}
+
+.button-reset:hover {
+    -fx-background-color: derive(#FF7675, 10%);
+}
+
+.button-reset:pressed {
+    -fx-background-color: derive(#FF7675, -10%);
+}
+
+/* ======== HEADER STYLING ======== */
+.header {
+    -fx-background-color: linear-gradient(to right, #1E90FF, #87CEFA); /* Changed gradient to blue shades */
+    -fx-padding: 15 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+/* ======== TABLE STYLING ======== */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+    -fx-background-radius: 8 8 0 0;
+    -fx-padding: 5 0;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-size: 35px;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: derive(#1E90FF, -20%); /* Adjusted for new blue */
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-padding: 2;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: derive(#1E90FF, 70%); /* Adjusted for new blue */
+}
+
+.table-view:focused .table-row-cell:focused {
+    -fx-background-color: derive(#1E90FF, 70%); /* Adjusted for new blue */
+    -fx-background-insets: 0, 0, 0;
+}
+
+/* ======== FORM CONTROLS STYLING ======== */
+.text-field, .choice-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.05), 1, 0, 0, 1);
+}
+
+.text-field:focused, .choice-box:focused, .date-picker:focused {
+    -fx-border-color: #1E90FF; /* Changed to blue */
+    -fx-effect: innershadow(gaussian, rgba(30,144,255,0.15), 1, 0, 0, 1); /* Adjusted for new blue */
+}
+
+.choice-box .list-cell {
+    -fx-padding: 5 10;
+    -fx-text-fill: #2c3e50;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.choice-box .menu-item .label {
+    -fx-padding: 8 10;
+    -fx-text-fill: #2c3e50;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #f1f2f6;
+}
+
+/* ======== CONTAINER STYLING ======== */
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+.container {
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+/* ======== ALERT STYLING ======== */
+.dialog-pane {
+    -fx-background-color: white;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.dialog-pane .content.label {
+    -fx-padding: 15;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+}
+
+/* ======== LAYOUT PADDING ======== */
+.padding-small {
+    -fx-padding: 5;
+}
+
+.padding-medium {
+    -fx-padding: 10;
+}
+
+.padding-large {
+    -fx-padding: 20;
+}
+
+/* ======== CHECKBOX STYLING ======== */
+.check-box {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+}
+
+.check-box:hover .box {
+    -fx-border-color: #1E90FF; /* Changed to blue */
+}
+
+/* ======== LISTVIEW STYLING ======== */
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: transparent;
+}
+
+.list-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.list-cell:selected {
+    -fx-background-color: derive(#1E90FF, 70%); /* Adjusted for new blue */
+}
+
+.list-cell:hover {
+    -fx-background-color: #f1f2f6;
+}
+
+/* Style pour les éléments personnalisés dans la liste */
+.dossier-item {
+    -fx-spacing: 5;
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 3, 0, 0, 1);
+}
+
+/* ======== GRIDPANE STYLING ======== */
+.grid-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 10;
+}
+
+.grid-header {
+    -fx-background-color: #1E90FF; /* Changed to blue */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.grid-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+}
+
+.grid-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.grid-cell:hover {
+    -fx-background-color: #f1f2f6;
+}
+
+.grid-cell-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1E90FF; /* Changed to blue */
+    -fx-font-size: 12px;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.grid-cell-button:hover {
+    -fx-text-fill: derive(#1E90FF, 20%); /* Adjusted for new blue */
+    -fx-underline: true;
+}
+
+/* ======== GRIDPANE STYLING ======== */
+.grid-pane {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 10;
+}
+
+/* ======== ANALYSE CARD STYLING ======== */
+.analyse-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 15;
+    -fx-min-width: 200;
+    -fx-max-width: 250;
+    -fx-min-height: 200;
+    -fx-cursor: hand;
+}
+
+.analyse-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 12, 0, 0, 3);
+    -fx-translate-y: -3;
+}
+
+.analyse-card .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+}
+
+.analyse-card .title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E90FF; /* Changed to blue */
+}
+
+.analyse-card .details-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1E90FF; /* Changed to blue */
+    -fx-font-size: 12px;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.analyse-card .details-button:hover {
+    -fx-text-fill: derive(#1E90FF, 20%); /* Adjusted for new blue */
+    -fx-underline: true;
+}
+
+/* ======== DOSSIER CARD STYLING ======== */
+.dossier-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 15;
+    -fx-min-width: 200;
+    -fx-max-width: 250;
+    -fx-min-height: 200;
+    -fx-cursor: hand;
+}
+
+.dossier-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 12, 0, 0, 3);
+    -fx-translate-y: -3;
+}
+
+.dossier-card .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+}
+
+.dossier-card .title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E90FF; /* Changed to blue */
+}
+
+.dossier-card .details-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1E90FF; /* Changed to blue */
+    -fx-font-size: 12px;
+    -fx-padding: 5;
+    -fx-cursor: hand;
+}
+
+.dossier-card .details-button:hover {
+    -fx-text-fill: derive(#1E90FF, 20%); /* Adjusted for new blue */
+    -fx-underline: true;
+}
+
+/* ======== PREDICTION CARD STYLING ======== */
+.prediction-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 20; /* Increased padding for larger cards */
+    -fx-min-width: 300; /* Increased from 200 */
+    -fx-max-width: 350; /* Increased from 250 */
+    -fx-min-height: 300; /* Increased from 200 */
+    -fx-cursor: hand;
+}
+
+.prediction-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 12, 0, 0, 3);
+    -fx-translate-y: -3;
+}
+
+.prediction-card .label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px; /* Increased from 12px for better readability */
+    -fx-wrap-text: true;
+}
+
+.prediction-card .title {
+    -fx-font-size: 18px; /* Increased from 16px */
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E90FF;
+}/* Style pour les boutons */
+.button_transparent {
+    -fx-background-color: transparent; /* Fond transparent */
+    -fx-text-fill: blue; /* Couleur du texte (blanc pour contraster avec l'image de fond) */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-border-color: transparent; /* Supprime les bordures */
+    -fx-background-radius: 5; /* Supprime les coins arrondis */
+    -fx-padding: 10 20; /* Espacement interne pour un meilleur rendu */
+}
+/* Style pour le séparateur du SplitPane */
+#splitPane .split-pane-divider {
+    -fx-background-color: blue;
+    -fx-pref-width: 6px; /* Épaisseur de la ligne */
+}
+/* Style de la racine */
+.custom-container {
+    -fx-background-color: #f4f7fa; /* Fond clair pour un look médical */
+    -fx-alignment: center;
+}
+
+/* Style de la carte */
+.custom-card {
+    -fx-background-color: #ffffff; /* Fond blanc pour la carte */
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: #d3d3d3; /* Bordure grise légère */
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3); /* Ombre légère */
+    -fx-max-width: 400; /* Largeur maximale pour une meilleure présentation */
+}
+
+/* Style des labels */
+.custom-label {
+    -fx-font-size: 18px; /* Taille de police agrandie pour les labels */
+    -fx-font-family: "Arial";
+    -fx-text-fill: #333333; /* Couleur sombre pour le texte */
+    -fx-wrap-text: true; /* Permettre le retour à la ligne si le texte est trop long */
+}
+
+/* Style des boutons */
+.custom-button {
+    -fx-background-color: #3498db; /* Bleu pour les boutons */
+    -fx-text-fill: #ffffff; /* Texte blanc */
+    -fx-font-size: 16px; /* Taille de police pour les boutons */
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 10 20; /* Padding pour rendre les boutons plus grands */
+}
+
+.custom-button:hover {
+    -fx-background-color: #2980b9; /* Bleu plus foncé au survol */
+    -fx-cursor: hand;
+}
+
+.custom-button-large {
+    -fx-background-color: #1abc9c; /* Vert pour le bouton "Aperçu" */
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-padding: 10 30; /* Padding plus large pour ce bouton */
+}
+
+.custom-button-large:hover {
+    -fx-background-color: #16a085; /* Vert plus foncé au survol */
+    -fx-cursor: hand;
+}
+
+/* Style du conteneur des boutons */
+.custom-button-container {
+    -fx-alignment: center;
+}
+/* ======== TEXT STYLING ======== */
+.custom1-text {
+    -fx-font-smoothing-type: lcd;
+}
+
+.custom1-label {
+    -fx-text-fill: #2c3e50;
+}
+
+.custom1-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* ======== BUTTON STYLING ======== */
+.custom1-button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 1);
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.custom1-button:hover {
+    -fx-background-color: derive(#007BFF, 20%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.custom1-button:pressed {
+    -fx-background-color: derive(#007BFF, -10%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 1, 0, 0, 1);
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ======== SIDEBAR STYLING ======== */
+.custom1-sidebar {
+    -fx-background-color: linear-gradient(to bottom, #007BFF, #4dabf7);
+    -fx-padding: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+.custom1-sidebar-vbox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+.custom1-sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 12 15;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-alignment: CENTER_LEFT;
+    -fx-max-width: Infinity;
+    -fx-margin: 0 0 5 0;
+}
+
+.custom1-sidebar-button:hover {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-translate-x: 3;
+}
+
+.custom1-sidebar-button:pressed, .custom1-sidebar-button:selected {
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-translate-x: 5;
+}
+
+/* ======== SPLIT PANE STYLING ======== */
+.custom1-split-pane {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 0;
+}
+
+.custom1-split-pane *.split-pane-divider {
+    -fx-background-color: #dcdde1;
+    -fx-padding: 0 2 0 2;
+}
+
+/* ======== CONTENT PANE STYLING ======== */
+.custom1-content-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+/* ======== CONTAINER STYLING ======== */
+.custom1-container {
+    -fx-padding: 20;
+    -fx-spacing: 15;
+}
+
+/* ======== FORM CONTROLS STYLING ======== */
+.custom1-text-field {
+    -fx-background-color: white;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.05), 1, 0, 0, 1);
+}
+
+.custom1-text-field:focused {
+    -fx-border-color: #007BFF;
+    -fx-effect: innershadow(gaussian, rgba(0,123,255,0.15), 1, 0, 0, 1);
+}
+
+/* Styles pour les graphiques avec le préfixe chart-custom- */
+.chart-custom-main {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 8, 0, 0, 2); /* Aligné avec .prediction-card */
+    -fx-padding: 20;
+    -fx-min-height: 300; /* Aligné avec .prediction-card */
+}
+
+.chart-custom-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50; /* Aligné avec .custom1-label */
+    -fx-padding: 0 0 10 0;
+}
+
+.chart-custom-legend {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #dcdcdc;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 5;
+}
+
+.chart-custom-pie-label {
+    -fx-font-size: 12px;
+    -fx-fill: #2c3e50;
+}
+
+.chart-custom-bar {
+    -fx-bar-fill: #3498db; /* Cohérent avec .custom-button */
+}
+
+.chart-custom-bar.series0 {
+    -fx-bar-fill: #3498db; /* Couleur pour "Diabète Positif" */
+}
+
+.chart-custom-bar.series1 {
+    -fx-bar-fill: #e74c3c; /* Couleur pour "Diabète Négatif" */
+}
+
+.chart-custom-plot-background {
+    -fx-background-color: #f9f9f9;
+    -fx-border-radius: 5;
+}
+
+.chart-custom-axis-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.chart-custom-axis {
+    -fx-tick-label-fill: #7f8c8d;
+    -fx-tick-label-font-size: 10px;
+}

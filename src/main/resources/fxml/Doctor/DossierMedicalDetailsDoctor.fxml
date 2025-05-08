@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import java.net.URL?>
+
+<VBox xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Doctor.DossierMedicalDetailsDoctorController" styleClass="custom-container" spacing="20">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <!-- En-tête -->
+    <HBox fx:id="header" styleClass="header" alignment="CENTER" spacing="10">
+        <Label fx:id="headerTitle" text="Détails du Dossier Médical" styleClass="header-title"/>
+        <Label fx:id="idLabel" styleClass="header-title"/>
+    </HBox>
+
+    <!-- Contenu -->
+    <VBox fx:id="card" styleClass="custom-card" spacing="15">
+        <Label fx:id="utilisateurIdLabel" styleClass="custom-label"/>
+        <Label fx:id="dateLabel" styleClass="custom-label"/>
+        <Button text="Aperçu" onAction="#previewFile" styleClass="custom-button-large" />
+        <Label fx:id="uniteLabel" styleClass="custom-label"/>
+        <Label fx:id="mesureLabel" styleClass="custom-label"/>
+        <Button text="Aperçu" onAction="#previewFilePatient" styleClass="custom-button-large" />
+        <!-- Section pour les prédictions -->
+        <Label fx:id="diabeteLabel" text="Risque de Diabète: " styleClass="custom-label"/>
+        <padding>
+            <Insets top="20" bottom="20" left="20" right="20"/>
+        </padding>
+    </VBox>
+
+    <HBox styleClass="custom-button-container" spacing="15" alignment="CENTER">
+        <Button text="Voir les Prédictions" onAction="#showPredictionList" styleClass="custom-button" />
+        <Button text="Voir les Analyses" onAction="#showAnalyseList" styleClass="custom-button" />
+        <Button text="Fermer" onAction="#closeDetails" styleClass="custom-button" />
+        <padding>
+            <Insets top="10" bottom="20"/>
+        </padding>
+    </HBox>
+</VBox>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Doctor.DoctorConsultationController"
+            styleClass="root" stylesheets="@../../styles/modern.css">
+
+    <top>
+        <VBox spacing="15" styleClass="header-section">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Gestion des consultations" styleClass="header-label"/>
+
+            <HBox spacing="15" alignment="CENTER_LEFT" styleClass="filter-section">
+                <ComboBox fx:id="filterStatus" promptText="Status" prefWidth="150" styleClass="filter-combo"/>
+                <ComboBox fx:id="filterType" promptText="Type" prefWidth="150" styleClass="filter-combo"/>
+                <DatePicker fx:id="filterDate" promptText="Date" styleClass="filter-date"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="250" styleClass="search-field"/>
+                <Button text="Actualiser" onAction="#handleRefresh" styleClass="button-raised"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.7" styleClass="main-split-pane">
+            <!-- Consultations Table -->
+            <VBox spacing="10" styleClass="content-section">
+                <TableView fx:id="tableConsultations" VBox.vgrow="ALWAYS" styleClass="consultation-table">
+                    <columns>
+                        <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                        <TableColumn fx:id="colDate" text="Date" prefWidth="150"/>
+                        <TableColumn fx:id="colPatient" text="Patient" prefWidth="150"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+
+                <HBox spacing="10" alignment="CENTER" styleClass="action-buttons">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <Button fx:id="btnAccept" text="Accepter" onAction="#handleAcceptAction">
+                        <styleClass>
+                            <String fx:value="button-raised"/>
+                            <String fx:value="button-success"/>
+                        </styleClass>
+                    </Button>
+                    <Button fx:id="btnReject" text="Refuser" onAction="#handleRejectAction">
+                        <styleClass>
+                            <String fx:value="button-raised"/>
+                            <String fx:value="button-danger"/>
+                        </styleClass>
+                    </Button>
+                    <Button fx:id="btnComplete" text="Terminer" onAction="#handleCompleteAction">
+                        <styleClass>
+                            <String fx:value="button-raised"/>
+                            <String fx:value="button-primary"/>
+                        </styleClass>
+                    </Button>
+                    <Button fx:id="btnView" text="Voir détails" onAction="#handleViewAction">
+                        <styleClass>
+                            <String fx:value="button-raised"/>
+                            <String fx:value="button-info"/>
+                        </styleClass>
+                    </Button>
+                    <Button fx:id="btnOrdonnance" text="Ordonnance" onAction="#handleOrdonnanceAction">
+                        <styleClass>
+                            <String fx:value="button-raised"/>
+                            <String fx:value="button-secondary"/>
+                        </styleClass>
+                    </Button>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER" styleClass="pagination">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <Button text="Précédent" onAction="#handlePreviousPage" styleClass="button-flat"/>
+                    <Button text="Suivant" onAction="#handleNextPage" styleClass="button-flat"/>
+                </HBox>
+            </VBox>
+
+            <!-- Dashboard / Statistics -->
+            <VBox spacing="20" alignment="TOP_CENTER" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label text="Tableau de bord" styleClass="section-header"/>
+
+                <PieChart fx:id="statsPieChart" prefHeight="250" title="Consultations par status"
+                          styleClass="stats-chart"/>
+
+                <VBox spacing="15" alignment="CENTER_LEFT" styleClass="stats-container">
+                    <Label fx:id="statsTotalLabel" text="Total: 0" styleClass="stat-label"/>
+                    <Label fx:id="statsPendingLabel" text="En attente: 0" styleClass="stat-label"/>
+                    <Label fx:id="statsTodayLabel" text="Aujourd'hui: 0" styleClass="stat-label"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </SplitPane>
+    </center>
+
+</BorderPane>

@@ -13,9 +13,6 @@ import service.UtilisateurDAO;
 import utils.MailService;
 import utils.SessionManager;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 

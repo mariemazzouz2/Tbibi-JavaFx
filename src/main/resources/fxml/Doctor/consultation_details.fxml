@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane styleClass="root" stylesheets="@../../styles/modern.css" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Doctor.DoctorConsultationDetailsController">
+    <top>
+        <VBox styleClass="header-section" spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Consultation Details" styleClass="header-label"/>
+        </VBox>
+    </top>
+    
+    <center>
+        <VBox spacing="20" styleClass="content-section">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <!-- Consultation Information -->
+            <GridPane hgap="15" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER" minWidth="150"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                
+                <Label text="Consultation ID:" styleClass="stat-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="consultationIdLabel" styleClass="stat-label" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                
+                <Label text="Type:" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="typeLabel" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                
+                <Label text="Status:" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="statusLabel" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                
+                <Label text="Date:" styleClass="stat-label" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="dateLabel" styleClass="stat-label" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            </GridPane>
+            
+            <!-- Patient Information -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Patient Information" styleClass="section-header"/>
+                <GridPane hgap="15" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="150"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    
+                    <Label text="Name:" styleClass="stat-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <Hyperlink fx:id="patientNameLink" styleClass="button-flat" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Email:" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <Label fx:id="patientEmailLabel" styleClass="stat-label" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Phone:" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Label fx:id="patientPhoneLabel" styleClass="stat-label" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- Comments Section -->
+            <VBox spacing="10" styleClass="dashboard-section">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <Label text="Comments" styleClass="section-header"/>
+                <TextArea fx:id="commentsArea" wrapText="true" styleClass="comments-area"/>
+            </VBox>
+        </VBox>
+    </center>
+    
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="action-buttons">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            
+            <Button fx:id="acceptButton" text="Accept" styleClass="button-raised, button-success" onAction="#handleAcceptAction">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CHECK" size="16"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="rejectButton" text="Reject" styleClass="button-raised, button-danger" onAction="#handleRejectAction">
+                <graphic>
+                    <FontAwesomeIconView glyphName="TIMES" size="16"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="completeButton" text="Complete" styleClass="button-raised, button-primary" onAction="#handleCompleteAction">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CHECK_CIRCLE" size="16"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="prescriptionButton" text="Create Prescription" styleClass="button-raised, button-info" onAction="#handlePrescriptionAction">
+                <graphic>
+                    <FontAwesomeIconView glyphName="FILE_TEXT" size="16"/>
+                </graphic>
+            </Button>
+            
+            <Button fx:id="closeButton" text="Close" styleClass="button-flat" onAction="#handleCloseAction">
+                <graphic>
+                    <FontAwesomeIconView glyphName="CLOSE" size="16"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+</BorderPane> 

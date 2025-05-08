@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Patient.ListResponsesController"
+            prefHeight="500.0" prefWidth="700.0"
+            style="-fx-background-color: #f5f5f5;">
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Titre -->
+        <Label fx:id="titleLabel" text="Réponses" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- TableView pour afficher les réponses -->
+        <TableView fx:id="responsesTable" prefHeight="350" prefWidth="660">
+            <columns>
+                <!-- Colonne Contenu -->
+                <TableColumn fx:id="contentColumn" text="Contenu" prefWidth="300">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="contenu" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Date -->
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateCreation" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Répondeur -->
+                <TableColumn fx:id="responderColumn" text="Répondeur" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="utilisateur" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <!-- Bouton Fermer -->
+        <Button text="Fermer"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"
+                onAction="#handleClose">
+            <padding>
+                <Insets top="8" right="16" bottom="8" left="16" />
+            </padding>
+        </Button>
+    </VBox>
+</AnchorPane>

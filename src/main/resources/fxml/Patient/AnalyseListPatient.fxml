@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseListController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="10.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" styleClass="container">
+            <children>
+                <!-- En-tête -->
+                <HBox styleClass="header">
+                    <Label text="Liste des Analyses" styleClass="header-title"/>
+                </HBox>
+
+                <!-- ScrollPane contenant le GridPane pour afficher les cartes -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <content>
+                        <GridPane fx:id="analyseGrid" hgap="10" vgap="10" styleClass="grid-pane"/>
+                    </content>
+                </ScrollPane>
+
+                <!-- Boutons d'action -->
+                <HBox spacing="10.0" alignment="CENTER" styleClass="padding-medium">
+                    <children>
+                        <Button text="Ajouter" onAction="#addAnalyse" styleClass="button"/>
+                        <Button text="Modifier" onAction="#editAnalyse" styleClass="button"/>
+                        <Button text="Supprimer" onAction="#deleteAnalyse" styleClass="button button-reset"/>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -38,6 +39,41 @@ public class FrontMedecinController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void goToDossierList() {
+        try {
+            // Chemin vers le fichier FXML du Forum
+            String fxmlPath = "/fxml/Doctor/DossierMedicalListDoctor.fxml";
+            if (getClass().getResource(fxmlPath) == null) {
+                throw new RuntimeException("Impossible de trouver " + fxmlPath + " dans les ressources");
+            }
+
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Forum");
+            stage.setScene(new Scene(root, 800, 600)); // Taille personnalisable
+            stage.setResizable(true);
+            stage.show();
+
+            // Fermer la fenêtre actuelle
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Impossible de charger la page du Forum : " + e.getMessage());
+        }
+    }
+
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

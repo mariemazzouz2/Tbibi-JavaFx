@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootVBox" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Doctor.DossierMedicalListDoctorController" styleClass="container">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <!-- En-tête -->
+    <HBox fx:id="header" styleClass="header">
+        <Label fx:id="headerTitle" text="Dossiers Médicaux - Docteur" styleClass="header-title"/>
+    </HBox>
+
+    <!-- Section de filtrage et recherche -->
+    <HBox fx:id="filterHBox" spacing="10" alignment="CENTER_LEFT" styleClass="card">
+        <Label text="Unité :" styleClass="label"/>
+        <ChoiceBox fx:id="uniteFilter" prefWidth="150" styleClass="choice-box"/>
+
+        <Label text="Date :" styleClass="label"/>
+        <DatePicker fx:id="dateFilter" prefWidth="150" styleClass="date-picker"/>
+
+        <Label text="Rechercher :" styleClass="label"/>
+        <TextField fx:id="searchField" promptText="Rechercher par fichier ou unité..." prefWidth="200" styleClass="text-field"/>
+
+        <Button fx:id="resetButton" text="Réinitialiser" onAction="#resetFilters" styleClass="button button-reset"/>
+
+    </HBox>
+
+    <!-- ScrollPane contenant le GridPane pour afficher les cartes -->
+    <ScrollPane fitToWidth="true" prefHeight="400">
+        <content>
+            <GridPane fx:id="dossierGrid" hgap="10" vgap="10" styleClass="grid-pane"/>
+        </content>
+    </ScrollPane>
+
+    <!-- Section de pagination -->
+    <HBox fx:id="paginationHBox" spacing="10" alignment="CENTER" styleClass="padding-medium">
+        <Button fx:id="prevPageButton" text="Précédent" onAction="#previousPage" disable="true" styleClass="button"/>
+        <Label fx:id="pageLabel" text="Page 1" styleClass="label"/>
+        <Button fx:id="nextPageButton" text="Suivant" onAction="#nextPage" styleClass="button"/>
+        <Button text="Afficher les Statistiques" onAction="#showPredictionStats" styleClass="custom-button" />
+    </HBox>
+</VBox>

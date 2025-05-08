@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Patient.ListQuestionController"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #f5f5f5;">
+
+
+
+    <!-- Main Content -->
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="70" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Titre -->
+        <Label text="Mes Questions" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- Barre de recherche et Bouton Ajouter -->
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="searchField" promptText="Rechercher par titre ou spécialité..."
+                       prefWidth="300"
+                       onKeyReleased="#handleSearch"
+                       style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5;"/>
+            <Button fx:id="addButton" text="Poser une nouvelle question"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;"
+                    onAction="#handleAddQuestion">
+                <padding>
+                    <Insets top="8" right="16" bottom="8" left="16" />
+                </padding>
+            </Button>
+        </HBox>
+
+        <!-- TableView pour afficher les questions -->
+        <TableView fx:id="questionsTable" prefHeight="400" prefWidth="860">
+            <columns>
+                <!-- Colonne Titre -->
+                <TableColumn fx:id="titleColumn" text="Titre" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="titre" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Spécialité -->
+                <TableColumn fx:id="specialiteColumn" text="Spécialité" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="specialite" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Image -->
+                <TableColumn fx:id="imageColumn" text="Image" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="image" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Date -->
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="120">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateCreation" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Visible -->
+                <TableColumn fx:id="visibleColumn" text="Visible" prefWidth="80">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="visible" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!-- Colonne Actions -->
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="150" />
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

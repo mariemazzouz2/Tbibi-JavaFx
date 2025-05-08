@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin.DossierMedicalListAdminController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="10.0" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <children>
+                <Label text="Liste des Dossiers Médicaux" styleClass="title-label" />
+                <TableView fx:id="dossierTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="utilisateurIdColumn" prefWidth="100.0" text="Utilisateur ID" />
+                        <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                        <TableColumn fx:id="fichierColumn" prefWidth="100.0" text="Fichier" />
+                        <TableColumn fx:id="uniteColumn" prefWidth="100.0" text="Unité" />
+                        <TableColumn fx:id="mesureColumn" prefWidth="100.0" text="Mesure" />
+                        <TableColumn fx:id="detailsColumn" prefWidth="100.0" text="Détails" />
+                    </columns>
+                </TableView>
+                <HBox spacing="10.0" alignment="CENTER">
+                    <children>
+                        <Button text="Ajouter" onAction="#addDossier" styleClass="button" />
+                        <Button text="Fermer" onAction="#close" styleClass="button" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

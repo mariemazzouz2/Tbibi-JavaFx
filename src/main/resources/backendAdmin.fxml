@@ -22,6 +22,7 @@
                 <Button text="Liste Users" onAction="#goToListeUsers" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px;"/>
                 <Label text="ADDONS" style="-fx-text-fill: #A3BFFA; -fx-font-size: 12px; -fx-padding: 10 0 5 10;" />
                 <Button text="Pages" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT; -fx-padding: 5 10;" />
+                <Button onAction="#goToDossierList" fx:id="suiviMedicalButton" text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT; -fx-padding: 5 10;" />
                 <Button text="Tables" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-alignment: BASELINE_LEFT; -fx-padding: 5 10;" />
             </children>
         </VBox>

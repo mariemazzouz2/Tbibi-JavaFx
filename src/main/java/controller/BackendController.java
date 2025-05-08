@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.Utilisateur;
@@ -16,6 +18,8 @@ public class BackendController {
 
     @FXML
     private Label labelNomUtilisateur;
+    @FXML
+    private Button suiviMedicalButton;
 
     @FXML
     public void initialize() {
@@ -24,7 +28,31 @@ public class BackendController {
             labelNomUtilisateur.setText(currentUser.getNom());
         }
     }
+    @FXML
+    private void goToDossierList() {
+        try {
+            // Chemin vers le fichier FXML du Forum
+            String fxmlPath = "/fxml/Admin/DossierMedicalListAdmin.fxml";
+            if (getClass().getResource(fxmlPath) == null) {
+                throw new RuntimeException("Impossible de trouver " + fxmlPath + " dans les ressources");
+            }
 
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Forum");
+            stage.setScene(new Scene(root, 800, 600)); // Taille personnalisable
+            stage.setResizable(true);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Impossible de charger la page du Forum : " + e.getMessage());
+        }
+    }
     public void logout(javafx.event.ActionEvent event) {
         SessionManager.getInstance().logout();
         try {
@@ -65,5 +93,13 @@ public class BackendController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

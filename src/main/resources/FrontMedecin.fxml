@@ -23,7 +23,7 @@
          <Button text="Consultation" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Forum" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Evenement" style="-fx-background-color: transparent; -fx-text-fill: black;" />
-         <Button text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: black;" />
+         <Button onAction="#goToDossierList" fx:id="suiviMedicalButton" text="Suivie Medicale" style="-fx-background-color: transparent; -fx-text-fill: black;" />
          <Button text="Produit" style="-fx-background-color: transparent; -fx-text-fill: black;" />
 
          <Label fx:id="labelNomUtilisateur" styleClass="user-info" text="Malak">
