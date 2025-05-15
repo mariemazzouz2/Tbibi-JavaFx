@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0" styleClass="container" stylesheets="@../styles/modern-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controllers.OrderViewController">
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+    <children>
+        <Label styleClass="title" text="Order Management">
+            <graphic>
+                <SVGPath content="M18,6h-2c0-2.2-1.8-4-4-4S8,3.8,8,6H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h12c1.1,0,2-0.9,2-2V8C20,6.9,19.1,6,18,6z" fill="#6C5CE7" />
+            </graphic>
+        </Label>
+        <VBox spacing="15.0" styleClass="card">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <TextField fx:id="searchField" prefWidth="250.0" promptText="Search by order ID or customer" />
+                        <ComboBox fx:id="statusFilterComboBox" prefWidth="150.0" promptText="Filter by status" />
+                        <Label text="From:" />
+                        <DatePicker fx:id="fromDatePicker" />
+                        <Label text="To:" />
+                        <DatePicker fx:id="toDatePicker" />
+                        <Button mnemonicParsing="false" onAction="#handleSearchOrders" text="Search" />
+                        <Button mnemonicParsing="false" onAction="#handleResetFilters" text="Reset" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER_RIGHT">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#handleAddOrder" styleClass="button-success" text="Create New Order">
+                            <graphic>
+                                <SVGPath content="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z" fill="white" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <TableView fx:id="orderTable" prefHeight="400.0" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="colMontantTotal" prefWidth="120.0" text="Total Amount" />
+                <TableColumn fx:id="colDateCommande" prefWidth="120.0" text="Date" />
+                <TableColumn fx:id="colStatut" prefWidth="120.0" text="Status" />
+                <TableColumn fx:id="colUser" prefWidth="150.0" text="Customer" />
+                <TableColumn fx:id="colProductCount" prefWidth="100.0" text="# Products" />
+            </columns>
+        </TableView>
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleViewOrderDetails" text="View Details">
+                    <graphic>
+                        <SVGPath content="M12,4.5C7,4.5,2.73,7.61,1,12c1.73,4.39,6,7.5,11,7.5s9.27-3.11,11-7.5C21.27,7.61,17,4.5,12,4.5z M12,17c-2.76,0-5-2.24-5-5s2.24-5,5-5s5,2.24,5,5S14.76,17,12,17z" fill="white" />
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#handleEditOrder" text="Edit">
+                    <graphic>
+                        <SVGPath content="M3,17.25V21h3.75L17.81,9.94l-3.75-3.75L3,17.25z M20.71,7.04c0.39-0.39,0.39-1.02,0-1.41l-2.34-2.34c-0.39-0.39-1.02-0.39-1.41,0l-1.83,1.83l3.75,3.75L20.71,7.04z" fill="white" />
+                    </graphic>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#handleDeleteOrder" styleClass="button-danger" text="Delete">
+                    <graphic>
+                        <SVGPath content="M6,19c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6V19z M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z" fill="white" />
+                    </graphic>
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

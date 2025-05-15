@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ManageResponsesController"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #f7f9fc;">
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+        <!-- Titre -->
+        <Label fx:id="titleLabel" text="Gérer les réponses" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #5c6bc0;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- ScrollPane contenant la pagination -->
+        <ScrollPane fx:id="responsesScrollPane" fitToWidth="true" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <Pagination fx:id="pagination" style="-fx-page-information-visible: false;"/>
+            </content>
+        </ScrollPane>
+
+        <!-- Boutons -->
+        <HBox spacing="15" alignment="CENTER">
+            <Button text="Ajouter une réponse"
+                    style="-fx-background-color: #5c6bc0; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 5;"
+                    onAction="#handleAddResponse">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20" />
+                </padding>
+            </Button>
+            <Button text="Fermer"
+                    style="-fx-background-color: #e57373; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-radius: 5;"
+                    onAction="#handleClose">
+                <padding>
+                    <javafx.geometry.Insets top="8.0" right="16.0" bottom="8.0" left="16.0" />
+                </padding>
+            </Button>
+        </HBox>
+    </VBox>
+</AnchorPane>

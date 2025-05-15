@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin.PredictionListAdminController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" styleClass="container">
+            <children>
+                <!-- En-tête -->
+                <HBox styleClass="header">
+                    <Label fx:id="titleLabel" text="Liste des Prédictions" styleClass="header-title" />
+                </HBox>
+                <Label fx:id="dossierIdLabel" text="Dossier ID: " styleClass="label" />
+
+                <!-- GridPane pour afficher les cartes -->
+                <ScrollPane fitToWidth="true" prefHeight="300.0">
+                    <content>
+                        <GridPane fx:id="predictionGrid" hgap="15" vgap="15" styleClass="grid-pane"/>
+                    </content>
+                </ScrollPane>
+
+                <!-- Boutons d'action (seulement Fermer) -->
+                <HBox alignment="CENTER" spacing="10.0" styleClass="padding-medium">
+                    <children>
+                        <Button onAction="#fermer" styleClass="button button-reset" text="Fermer" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

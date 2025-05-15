@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/24"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Doctor.ListQuestionDocteur"
+            prefHeight="600.0" prefWidth="900.0"
+            stylesheets="/stylee/DocteurQuestion.css"
+            styleClass="root">
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+        <!-- Titre -->
+        <Label text="Questions des Patients" styleClass="header-title" />
+
+        <!-- Barre de recherche -->
+        <HBox spacing="10" alignment="CENTER">
+            <TextField fx:id="searchField" promptText="Rechercher par titre ou spécialité..."
+                       prefWidth="300"
+                       onKeyReleased="#handleSearch"
+                       styleClass="medical-search"/>
+        </HBox>
+
+        <!-- TableView pour afficher les questions -->
+        <TableView fx:id="questionsTable" prefHeight="400" prefWidth="860" styleClass="medical-table">
+            <columns>
+                <TableColumn fx:id="titleColumn" text="Titre" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="titre" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="specialiteColumn" text="Spécialité" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="specialite" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="imageColumn" text="Image" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="image" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="120">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateCreation" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="visibleColumn" text="Visible" prefWidth="80">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="visible" />
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

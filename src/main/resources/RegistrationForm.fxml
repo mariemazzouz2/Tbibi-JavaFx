@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<AnchorPane prefHeight="556.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegistrationFormController">
+   <children>
+      <AnchorPane prefHeight="689.0" prefWidth="416.0">
+         <children>
+            <Label layoutX="21.0" layoutY="25.0" text="Registration" textFill="#0c04f4">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+
+            <Separator layoutX="21.0" layoutY="71.0" prefHeight="10.0" prefWidth="370.0" />
+
+            <!-- Nom -->
+            <TextField fx:id="txtNom" layoutX="21.0" layoutY="96.0" prefHeight="36.0" prefWidth="156.0" promptText="Nom" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </TextField>
+            <Label fx:id="lblNomError" layoutX="21.0" layoutY="132.0" textFill="red" visible="false" />
+
+            <!-- Prénom -->
+            <TextField fx:id="txtPrenom" layoutX="208.0" layoutY="96.0" prefHeight="36.0" prefWidth="175.0" promptText="Prenom" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </TextField>
+            <Label fx:id="lblPrenomError" layoutX="208.0" layoutY="132.0" textFill="red" visible="false" />
+
+            <!-- Email -->
+            <TextField fx:id="txtEmail" layoutX="21.0" layoutY="153.0" prefHeight="36.0" prefWidth="156.0" promptText="Email" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </TextField>
+            <Label fx:id="lblEmailError" layoutX="21.0" layoutY="189.0" textFill="red" visible="false" />
+
+            <!-- Password -->
+            <PasswordField fx:id="txtPassword" layoutX="208.0" layoutY="153.0" prefHeight="36.0" prefWidth="175.0" promptText="Password" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </PasswordField>
+            <Label fx:id="lblPasswordError" layoutX="208.0" layoutY="189.0" textFill="red" visible="false" />
+
+            <!-- Confirm Password -->
+            <PasswordField fx:id="txtConfirmPassword" layoutX="206.0" layoutY="205.0" prefHeight="36.0" prefWidth="175.0" promptText="Confirm Password" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </PasswordField>
+            <Label fx:id="lblPasswordMismatch" layoutX="206.0" layoutY="245.0" textFill="red" visible="false" text="Les mots de passe ne correspondent pas !" />
+
+            <!-- Telephone -->
+            <TextField fx:id="txtTelephone" layoutX="21.0" layoutY="205.0" prefHeight="36.0" prefWidth="156.0" promptText="Telephone" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </TextField>
+            <Label fx:id="lblTelephoneError" layoutX="21.0" layoutY="245.0" textFill="red" visible="false" />
+
+            <!-- Adresse -->
+            <TextField fx:id="txtAdresse" layoutX="19.0" layoutY="263.0" prefHeight="36.0" prefWidth="355.0" promptText="Adresse" style="-fx-border-color: grey;">
+               <font><Font size="15.0" /></font>
+            </TextField>
+            <Label fx:id="lblAdresseError" layoutX="19.0" layoutY="299.0" textFill="red" visible="false" />
+
+            <!-- Sexe -->
+            <Label layoutX="25.0" layoutY="315.0" text="Sexe: ">
+               <font><Font size="14.0" /></font>
+            </Label>
+            <CheckBox fx:id="checkHomme" layoutX="104.0" layoutY="315.0" mnemonicParsing="false" text="Homme">
+               <font><Font size="14.0" /></font>
+            </CheckBox>
+            <CheckBox fx:id="checkFemme" layoutX="260.0" layoutY="315.0" mnemonicParsing="false" text="Femme">
+               <font><Font size="14.0" /></font>
+            </CheckBox>
+            <Label fx:id="lblSexeError" layoutX="25.0" layoutY="340.0" textFill="red" visible="false" />
+
+            <!-- Date de Naissance -->
+            <Label layoutX="25.0" layoutY="353.0" text="Date de Naissance: ">
+               <font><Font size="14.0" /></font>
+            </Label>
+            <DatePicker fx:id="txtDateNaissance" layoutX="23.0" layoutY="385.0" prefHeight="36.0" prefWidth="362.0" />
+            <Label fx:id="lblDateNaissanceError" layoutX="23.0" layoutY="425.0" textFill="red" visible="false" />
+
+            <!-- Upload Image -->
+            <Button fx:id="btnUploadImage" layoutX="30.0" layoutY="443.0" mnemonicParsing="false" onAction="#handleImageUpload" text="Choisir une image" />
+            <ImageView fx:id="imagePreview" fitHeight="80.0" fitWidth="100.0" layoutX="167.0" layoutY="363.0" preserveRatio="true" style="-fx-border-color: grey;" />
+
+            <!-- Role -->
+            <Label layoutX="26.0" layoutY="485.0" text="Role: ">
+               <font><Font size="14.0" /></font>
+            </Label>
+            <fx:define>
+               <ToggleGroup fx:id="radioGroup" />
+            </fx:define>
+            <RadioButton fx:id="RadioMedecin" layoutX="107.0" layoutY="485.0" mnemonicParsing="false" text="Medecin" toggleGroup="$radioGroup">
+               <font><Font size="14.0" /></font>
+            </RadioButton>
+            <RadioButton fx:id="RadioPatient" layoutX="261.0" layoutY="485.0" mnemonicParsing="false" text="Patient" toggleGroup="$radioGroup">
+               <font><Font size="14.0" /></font>
+            </RadioButton>
+            <Label fx:id="lblRoleError" layoutX="26.0" layoutY="510.0" textFill="red" visible="false" />
+
+            <!-- Taille (Patient) -->
+            <TextField fx:id="txtTaille" layoutX="27.0" layoutY="519.0" prefHeight="36.0" prefWidth="156.0" promptText="Taille" style="-fx-border-color: grey;" visible="false">
+               <font><Font size="15.0" /></font>
+            </TextField>
+
+            <!-- Poids (Patient) -->
+            <TextField fx:id="txtPoids" layoutX="215.0" layoutY="519.0" prefHeight="36.0" prefWidth="175.0" promptText="Poids" style="-fx-border-color: grey;" visible="false">
+               <font><Font size="15.0" /></font>
+            </TextField>
+
+            <!-- Spécialité (Medecin) -->
+            <TextField fx:id="txtSpecialite" layoutX="27.0" layoutY="519.0" prefHeight="36.0" prefWidth="362.0" promptText="Spécialité" style="-fx-border-color: grey;" visible="false">
+               <font><Font size="15.0" /></font>
+            </TextField>
+
+            <!-- Diplôme Upload (Medecin) -->
+            <Button fx:id="btnUploaddiplome" layoutX="27.0" layoutY="582.0" mnemonicParsing="false" onAction="#handleDiplomeUpload" prefHeight="26.0" prefWidth="175.0" text="Inserez votre diplome" visible="false" />
+            <ImageView fx:id="diplomePreview" fitHeight="80.0" fitWidth="100.0" layoutX="217.0" layoutY="555.0" preserveRatio="true" style="-fx-border-color: grey;" />
+
+            <!-- Register Button -->
+            <Button layoutX="79.0" layoutY="639.0" mnemonicParsing="false" onAction="#btnRegister" prefHeight="36.0" prefWidth="251.0" style="-fx-background-color: blue;" text="Register" textFill="WHITE">
+               <font><Font name="System Bold" size="16.0" /></font>
+            </Button>
+
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

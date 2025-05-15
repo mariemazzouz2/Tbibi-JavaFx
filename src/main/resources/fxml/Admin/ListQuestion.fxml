@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import java.net.URL?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Admin.ListQuestionAdmin"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #f5f5f5;">
+
+    <!-- Main Content -->
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <!-- Titre centré avec style amélioré -->
+        <Label text="GESTION DES QUESTIONS"
+               alignment="CENTER"
+               maxWidth="Infinity"
+               style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2d5985; -fx-padding: 0 0 10 0;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- Barre de recherche améliorée -->
+        <HBox spacing="10" alignment="CENTER" style="-fx-padding: 0 0 10 0;">
+            <TextField fx:id="searchField"
+                       promptText="Rechercher par titre ou spécialité..."
+                       prefWidth="400"
+                       onKeyReleased="#handleSearch"
+                       style="-fx-background-color: white; -fx-border-color: #d1d7dc; -fx-border-radius: 15; -fx-padding: 5 15;"/>
+        </HBox>
+
+        <!-- TableView avec style amélioré -->
+        <TableView fx:id="questionsTable" prefHeight="400" prefWidth="860"
+                   style="-fx-background-color: white; -fx-border-color: #dfe6e9; -fx-border-radius: 5;">
+            <columns>
+                <!-- Colonne Titre -->
+                <TableColumn fx:id="titleColumn" text="Titre" prefWidth="200">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="titre" />
+                    </cellValueFactory>
+                    <style>
+                        -fx-alignment: CENTER_LEFT;
+                        -fx-font-weight: bold;
+                    </style>
+                </TableColumn>
+
+                <!-- Colonne Spécialité -->
+                <TableColumn fx:id="specialiteColumn" text="Spécialité" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="specialite" />
+                    </cellValueFactory>
+                    <style>
+                        -fx-alignment: CENTER;
+                    </style>
+                </TableColumn>
+
+                <!-- Colonne Image -->
+                <TableColumn fx:id="imageColumn" text="Image" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="image" />
+                    </cellValueFactory>
+                    <style>
+                        -fx-alignment: CENTER;
+                    </style>
+                </TableColumn>
+
+                <!-- Colonne Date -->
+                <TableColumn fx:id="dateColumn" text="Date" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="dateCreation" />
+                    </cellValueFactory>
+                    <style>
+                        -fx-alignment: CENTER;
+                    </style>
+                </TableColumn>
+
+                <!-- Colonne Visible -->
+                <TableColumn fx:id="visibleColumn" text="Visible" prefWidth="100">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="visible" />
+                    </cellValueFactory>
+                    <style>
+                        -fx-alignment: CENTER;
+                    </style>
+                </TableColumn>
+
+                <!-- Colonne Actions -->
+                <TableColumn fx:id="actionsColumn" text="Actions" prefWidth="200">
+                    <style>
+                        -fx-alignment: CENTER;
+                    </style>
+                </TableColumn>
+            </columns>
+
+            <!-- Style des lignes du tableau -->
+            <style>
+                -fx-table-cell-border-color: transparent;
+                -fx-selection-bar: #d4e6f1;
+                -fx-selection-bar-non-focused: #e3f2fd;
+            </style>
+
+            <!-- Message quand le tableau est vide -->
+            <placeholder>
+                <Label text="Aucune question disponible"
+                       style="-fx-text-fill: #7f8c8d; -fx-font-style: italic;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+</AnchorPane>

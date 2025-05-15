@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane prefHeight="552.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Main.MainAdminController">
+    <stylesheets>
+        <URL value="@../../style.css" />
+    </stylesheets>
+    <children>
+        <!-- Sidebar -->
+        <AnchorPane prefHeight="600.0" prefWidth="200.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" layoutX="0.0" layoutY="100.0" prefWidth="200.0" spacing="10">
+                    <children>
+                  <Label prefHeight="15.0" prefWidth="60.0" text="Dashbord" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Black" size="61.0" />
+                     </font>
+                  </Label>
+                        <Button fx:id="forumButton" layoutX="244.0" layoutY="35.0" onAction="#goToForum" styleClass="nav-button" text="Forum" />
+                        <Button fx:id="produitButton" layoutX="317.0" layoutY="35.0" onAction="#goToProduit" styleClass="nav-button" text="Produit" />
+                        <Button fx:id="evenementButton" layoutX="394.0" layoutY="35.0" onAction="#goToEvenement" styleClass="nav-button" text="Événement" />
+                        <Button fx:id="CategorieButton" layoutX="394.0" layoutY="35.0" onAction="#goToEvenement" styleClass="nav-button" text="Categorie" />
+                        <Button fx:id="suiviMedicalButton" layoutX="497.0" layoutY="35.0" onAction="#goToDossierList" styleClass="nav-button" text="Suivi Médical" />
+                        <Button fx:id="consultationButton" layoutX="612.0" layoutY="35.0" onAction="#goToConsultation" styleClass="nav-button" text="Consultation" />
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+
+        <!-- Main Content Area - Positioned on top with margin to show sidebar -->
+        <BorderPane pickOnBounds="false">
+            <left>
+                <AnchorPane prefWidth="180.0" visible="false" />
+            </left>
+            <center>
+                <AnchorPane fx:id="mainRouter" prefHeight="600.0" prefWidth="800.0" styleClass="main-content" />
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

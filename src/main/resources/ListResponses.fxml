@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ListResponsesController"
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: #f7f9fc;">
+
+    <VBox spacing="20" alignment="TOP_CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+        <!-- Titre -->
+        <Label fx:id="titleLabel" text="Réponses" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- ScrollPane contenant la pagination -->
+        <ScrollPane fx:id="responsesScrollPane" fitToWidth="true" vbarPolicy="AS_NEEDED" hbarPolicy="NEVER"
+                    style="-fx-background-color: transparent; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+            <content>
+                <Pagination fx:id="pagination" style="-fx-page-information-visible: false;"/>
+            </content>
+        </ScrollPane>
+
+        <!-- Bouton Fermer -->
+        <Button text="Fermer"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold;"
+                onAction="#handleClose">
+            <padding>
+                <javafx.geometry.Insets top="8.0" right="16.0" bottom="8.0" left="16.0" />
+            </padding>
+        </Button>
+    </VBox>
+</AnchorPane>

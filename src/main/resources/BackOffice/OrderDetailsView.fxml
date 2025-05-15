@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" styleClass="card" stylesheets="@../styles/modern-style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controllers.OrderDetailsController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <children>
+        <Label styleClass="title" text="Order Details">
+            <graphic>
+                <SVGPath content="M12,4.5C7,4.5,2.73,7.61,1,12c1.73,4.39,6,7.5,11,7.5s9.27-3.11,11-7.5C21.27,7.61,17,4.5,12,4.5z M12,17c-2.76,0-5-2.24-5-5s2.24-5,5-5s5,2.24,5,5S14.76,17,12,17z" fill="#6C5CE7" />
+            </graphic>
+            <VBox.margin>
+                <Insets bottom="20.0" />
+            </VBox.margin>
+        </Label>
+        <GridPane hgap="15.0" vgap="10.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="340.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Label styleClass="subtitle" text="Order ID:" />
+                <Label styleClass="subtitle" text="Customer:" GridPane.rowIndex="1" />
+                <Label styleClass="subtitle" text="Date:" GridPane.rowIndex="2" />
+                <Label styleClass="subtitle" text="Status:" GridPane.rowIndex="3" />
+                <Label fx:id="orderIdLabel" text="Order ID" GridPane.columnIndex="1" />
+                <Label fx:id="customerLabel" text="Customer Name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="dateLabel" text="Date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="statusLabel" text="Status" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+            <children>
+                <Label styleClass="subtitle" text="Products in Order">
+                    <graphic>
+                        <SVGPath content="M7,18c-1.1,0-1.99,0.9-1.99,2S5.9,22,7,22s2-0.9,2-2S8.1,18,7,18z M17,18c-1.1,0-1.99,0.9-1.99,2s0.89,2,1.99,2s2-0.9,2-2S18.1,18,17,18z M7.17,14.75l0.03-0.12l0.9-1.63h7.45c0.75,0,1.41-0.41,1.75-1.03l3.86-7.01L19.42,4h-0.01l-1.1,2l-2.76,5H8.53l-0.13-0.27L6.16,6l-0.95-2l-0.94-2H1v2h2l3.6,7.59l-1.35,2.45C4.52,15.37,5.48,17,7,17h12v-2H7L7.17,14.75z" fill="#6C5CE7" />
+                    </graphic>
+                </Label>
+                <TableView fx:id="productsTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colProductId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colProductName" prefWidth="200.0" text="Name" />
+                        <TableColumn fx:id="colProductType" prefWidth="150.0" text="Type" />
+                        <TableColumn fx:id="colProductPrice" prefWidth="150.0" text="Price" />
+                    </columns>
+                </TableView>
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Label styleClass="subtitle" text="Total Amount:" />
+                        <Label fx:id="totalLabel" styleClass="title" text="€0.00" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+            </children>
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </VBox>
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleClose" prefWidth="120.0" text="Close" />
+            </children>
+            <VBox.margin>
+                <Insets top="20.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

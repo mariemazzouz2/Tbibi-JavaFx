@@ -1,0 +1,240 @@
+/* Root styles */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Roboto", sans-serif;
+}
+
+/* Header section */
+.header-section {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.header-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
+}
+
+/* Filter section */
+.filter-section {
+    -fx-background-color: transparent;
+}
+
+.filter-combo {
+    -jfx-unfocus-color: #90A4AE;
+    -jfx-focus-color: #2196F3;
+}
+
+/* DatePicker styling */
+.filter-date {
+    -fx-background-color: transparent;
+    -fx-border-color: #90A4AE;
+    -fx-border-width: 0 0 1 0;
+}
+
+.filter-date:focused {
+    -fx-border-color: #2196F3;
+}
+
+.filter-date .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.filter-date .arrow-button .arrow {
+    -fx-background-color: #90A4AE;
+}
+
+.filter-date:focused .arrow-button .arrow {
+    -fx-background-color: #2196F3;
+}
+
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #2196F3;
+}
+
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: white;
+}
+
+.date-picker-popup .week-number-cell {
+    -fx-text-fill: #90A4AE;
+}
+
+.date-picker-popup .calendar-grid {
+    -fx-background-color: white;
+}
+
+.date-picker-popup .calendar-grid .day-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #37474F;
+}
+
+.date-picker-popup .calendar-grid .day-cell:hover {
+    -fx-background-color: #E3F2FD;
+}
+
+.date-picker-popup .calendar-grid .day-cell.selected {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+}
+
+.search-field {
+    -jfx-focus-color: #2196F3;
+    -jfx-unfocus-color: #90A4AE;
+    -fx-prompt-text-fill: #90A4AE;
+}
+
+/* Modern text field */
+.modern-text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #90A4AE;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 5 0;
+}
+
+.modern-text-field:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Comments area */
+.comments-area {
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+}
+
+.comments-area:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Signature image */
+.signature-image {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 4px;
+}
+
+/* Table styles */
+.consultation-table {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.consultation-table .column-header {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.consultation-table .table-row-cell:odd {
+    -fx-background-color: #f8f9fa;
+}
+
+.consultation-table .table-row-cell:selected {
+    -fx-background-color: derive(#2196F3, 90%);
+}
+
+/* Button styles */
+.button-raised {
+    -fx-padding: 8 16;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button-success {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+.button-danger {
+    -fx-background-color: #F44336;
+    -fx-text-fill: white;
+}
+
+.button-primary {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+}
+
+.button-info {
+    -fx-background-color: #00BCD4;
+    -fx-text-fill: white;
+}
+
+.button-secondary {
+    -fx-background-color: #9C27B0;
+    -fx-text-fill: white;
+}
+
+.button-flat {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2196F3;
+}
+
+/* Dashboard section */
+.dashboard-section {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-background-radius: 4px;
+}
+
+.section-header {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2196F3;
+}
+
+.stats-chart {
+    -fx-background-color: transparent;
+}
+
+.stats-container {
+    -fx-padding: 15;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 4px;
+}
+
+.stat-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #37474F;
+}
+
+/* Split pane styling */
+.main-split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+.main-split-pane .split-pane-divider {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 0 1;
+}
+
+/* Pagination section */
+.pagination {
+    -fx-background-color: transparent;
+}
+
+/* Content section */
+.content-section {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+}
+
+/* Action buttons section */
+.action-buttons {
+    -fx-background-color: transparent;
+    -fx-padding: 10;
+} 

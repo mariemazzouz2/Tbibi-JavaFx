@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseFormController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="10.0" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefWidth="360.0" styleClass="container">
+            <children>
+                <!-- En-tête -->
+                <HBox styleClass="header">
+                    <Label text="Formulaire Analyse" styleClass="header-title"/>
+                </HBox>
+
+                <!-- Formulaire dans une carte -->
+                <VBox styleClass="card" spacing="10.0">
+                    <children>
+                        <!-- Type ChoiceBox -->
+                        <Label text="Type d'analyse :" styleClass="label" />
+                        <ChoiceBox fx:id="typeChoiceBox" styleClass="text-field" prefWidth="276.0" />
+                        <Label fx:id="typeErrorLabel" styleClass="error-label" text="" wrapText="true" />
+
+                        <!-- Date Picker -->
+                        <Label text="Date de l'analyse :" styleClass="label" />
+                        <DatePicker fx:id="dateAnalyseField" promptText="Date Analyse (YYYY-MM-DD)" styleClass="text-field" prefHeight="50.0" prefWidth="276.0" />
+                        <Label fx:id="dateErrorLabel" styleClass="error-label" text="" wrapText="true" />
+
+                        <!-- Données Analyse -->
+                        <Label text="Données de l'analyse :" styleClass="label" />
+                        <HBox spacing="5.0">
+                            <TextField fx:id="donneesAnalyseField" styleClass="text-field" editable="false" prefWidth="200.0" />
+                            <Button onAction="#handleSelectFile" styleClass="button" text="Sélectionner" />
+                        </HBox>
+                        <Label fx:id="donneesErrorLabel" styleClass="error-label" text="" wrapText="true" />
+
+                        <!-- Diagnostic -->
+                        <Label text="Diagnostic :" styleClass="label" />
+                        <TextField fx:id="diagnosticField" promptText="Diagnostic" styleClass="text-field" prefWidth="276.0" />
+                        <Label fx:id="diagnosticErrorLabel" styleClass="error-label" text="" wrapText="true" />
+
+                        <!-- Save Button -->
+                        <HBox spacing="10.0" alignment="CENTER" styleClass="padding-medium">
+                            <children>
+                                <Button fx:id="saveAnalyseButton" text="Enregistrer" onAction="#saveAnalyse" styleClass="button" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

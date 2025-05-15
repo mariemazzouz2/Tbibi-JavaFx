@@ -1,0 +1,412 @@
+/* Front Office Modern Style CSS for JavaFX Application */
+
+/* ======== BASE STYLING ======== */
+.root {
+    -fx-base: #f4f4f4;
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    -fx-focus-color: #6C5CE7;
+    -fx-accent: #6C5CE7;
+}
+
+/* ======== HEADER STYLING ======== */
+.header {
+    -fx-background-color: linear-gradient(to right, #6C5CE7, #a29bfe);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.shop-name {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.search-field {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+    -fx-padding: 8 15;
+}
+
+.search-field:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 0);
+}
+
+.cart-button {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 50%;
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-max-width: 45px;
+    -fx-max-height: 45px;
+    -fx-cursor: hand;
+}
+
+.cart-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 0);
+}
+
+.cart-count {
+    -fx-background-color: #FF7675;
+    -fx-background-radius: 50%;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-alignment: center;
+    -fx-padding: 2;
+    -fx-font-size: 10px;
+}
+
+.date-time, .user-info {
+    -fx-text-fill: white;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+    -fx-padding: 8 15;
+}
+
+.filter-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: white;
+}
+
+.filter-bar .label {
+    -fx-text-fill: white;
+}
+
+.filter-combo {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 5;
+    -fx-text-fill: #000000;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+.filter-combo .arrow {
+    -fx-background-color: white;
+}
+
+.filter-combo .list-cell {
+    -fx-text-fill: #000000;
+}
+
+.filter-combo .list-view {
+    -fx-background-color: #6C5CE7;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-combo .list-view .list-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.apply-filter-btn, .reset-filter-btn {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.apply-filter-btn:hover, .reset-filter-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ======== PRODUCT CARDS STYLING ======== */
+.product-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.product-scroll-pane > .viewport {
+    -fx-background-color: #f8f9fa;
+}
+
+.products-container {
+    -fx-background-color: #f8f9fa;
+}
+
+.product-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-min-width: 200px;
+    -fx-max-width: 220px;
+    -fx-min-height: 300px;
+    -fx-max-height: 350px;
+    -fx-cursor: hand;
+    -fx-padding: 10;
+    -fx-transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
+    -fx-translate-y: -3;
+}
+
+.product-image-container {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-min-height: 150px;
+    -fx-alignment: center;
+}
+
+.product-image {
+    -fx-fit-height: 130;
+    -fx-fit-width: 180;
+    -fx-preserve-ratio: true;
+}
+
+.product-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-wrap-text: true;
+    -fx-max-width: 190px;
+}
+
+.product-type {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 12px;
+    -fx-background-color: #f1f2f6;
+    -fx-background-radius: 20;
+    -fx-padding: 3 10;
+    -fx-max-width: 100px;
+}
+
+.product-price {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6C5CE7;
+}
+
+.product-description {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+    -fx-max-width: 190px;
+    -fx-max-height: 40px;
+}
+
+.add-to-cart-btn {
+    -fx-background-color: #6C5CE7;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.add-to-cart-btn:hover {
+    -fx-background-color: #5649c1;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.add-to-cart-btn:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+    -fx-background-color: #483da1;
+}
+
+/* ======== ANIMATIONS ======== */
+@keyframes pulse {
+    0% {
+        -fx-scale-x: 1;
+        -fx-scale-y: 1;
+    }
+    50% {
+        -fx-scale-x: 1.05;
+        -fx-scale-y: 1.05;
+    }
+    100% {
+        -fx-scale-x: 1;
+        -fx-scale-y: 1;
+    }
+}
+
+/* ======== SCROLL BAR STYLING ======== */
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .track-background,
+.scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(108,92,231,0.3);
+    -fx-background-insets: 0 4 0 4;
+    -fx-background-radius: 2em;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(108,92,231,0.5);
+}
+
+.scroll-bar:horizontal .thumb:pressed,
+.scroll-bar:vertical .thumb:pressed {
+    -fx-background-color: rgba(108,92,231,0.7);
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding: 5;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+/* Add these styles to the existing front-style.css */
+
+/* ======== CART VIEW STYLING ======== */
+.cart-header {
+    -fx-background-color: linear-gradient(to right, #6C5CE7, #a29bfe);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.cart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 3, 0, 0, 1);
+}
+
+.cart-item-count {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20;
+    -fx-padding: 5 15;
+}
+
+.cart-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.cart-scroll-pane > .viewport {
+    -fx-background-color: #f8f9fa;
+}
+
+.cart-container {
+    -fx-background-color: #f8f9fa;
+}
+
+.cart-summary {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, -2);
+}
+
+.summary-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.summary-value {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6C5CE7;
+}
+
+.grand-total {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6C5CE7;
+}
+
+.continue-shopping-btn {
+    -fx-background-color: #95a5a6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.continue-shopping-btn:hover {
+    -fx-background-color: #7f8c8d;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.clear-cart-btn {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.clear-cart-btn:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.checkout-btn {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.checkout-btn:hover {
+    -fx-background-color: #27ae60;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1);
+}
+
+.quantity-spinner {
+    -fx-pref-width: 80px;
+}
+
+.remove-btn {
+    -fx-background-color: #e74c3c;
+    -fx-background-radius: 50%;
+    -fx-min-width: 30px;
+    -fx-min-height: 30px;
+    -fx-max-width: 30px;
+    -fx-max-height: 30px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.remove-btn:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+.product-image-small {
+    -fx-fit-height: 60;
+    -fx-fit-width: 60;
+    -fx-preserve-ratio: true;
+}
+
+.empty-cart-message {
+    -fx-font-size: 18px;
+    -fx-text-fill: #7f8c8d;
+    -fx-alignment: center;
+    -fx-padding: 50;
+}

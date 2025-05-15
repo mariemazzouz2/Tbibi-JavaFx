@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane prefHeight="552.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Main.MainDoctorController">
+<!-- <AnchorPane prefHeight="552.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.Main.MainDoctorController">-->
+    <stylesheets>
+        <URL value="@../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <!-- ImageView en arrière-plan, ancrée aux bords -->
+        <ImageView fx:id="backgroundImageView" fitHeight="552.0" fitWidth="849.0">
+            <image>
+                <Image url="@../image/main.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="forumButton" layoutX="244.0" layoutY="35.0" onAction="#goToForum" styleClass="button_transparent" text="Forum" />
+        <Button fx:id="produitButton" layoutX="317.0" layoutY="35.0" onAction="#goToProduit" styleClass="button_transparent" text="Produit" />
+        <Button fx:id="evenementButton" layoutX="394.0" layoutY="35.0" onAction="#goToEvenement" styleClass="button_transparent" text="Événement" />
+        <Button fx:id="suiviMedicalButton" layoutX="497.0" layoutY="35.0" onAction="#goToDossierList" styleClass="button_transparent" text="Suivi Médical" />
+        <Button fx:id="consultationButton" layoutX="612.0" layoutY="35.0" onAction="#goToConsultation" styleClass="button_transparent" text="Consultation" />
+    </children>
+</AnchorPane>

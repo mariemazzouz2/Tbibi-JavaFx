@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.SVGPath?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tests.Patient.AddQuestionController"
+            style="-fx-background: transparent; -fx-background-color: transparent;"
+            fitToWidth="true">
+
+    <!-- Conteneur principal avec défilement -->
+    <VBox spacing="25" alignment="TOP_CENTER"
+          style="-fx-background-color: linear-gradient(to bottom, #ffffff, #f5f7fa); -fx-padding: 30 40;">
+
+        <!-- En-tête avec icône SVG intégrée -->
+        <VBox spacing="10" alignment="CENTER">
+            <!-- Icône médicale créée avec du SVG -->
+            <SVGPath content="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"
+                     style="-fx-fill: #3498db; -fx-scale-x: 1.5; -fx-scale-y: 1.5;"/>
+
+            <VBox spacing="5" alignment="CENTER">
+                <Label text="Nouvelle Question Médicale"
+                       style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: linear-gradient(to right, #2980b9, #2c3e50);">
+                    <effect>
+                        <DropShadow color="rgba(0,0,0,0.1)" radius="3" offsetX="1" offsetY="1"/>
+                    </effect>
+                </Label>
+                <Text text="Obtenez des réponses de professionnels de santé"
+                      style="-fx-font-size: 14px; -fx-fill: #7f8c8d; -fx-font-style: italic;"/>
+            </VBox>
+        </VBox>
+
+        <!-- Carte du formulaire avec ombre portée -->
+        <StackPane>
+            <Pane style="-fx-background-color: #ffffff; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0, 2);">
+                <Pane minWidth="550" minHeight="400" />
+            </Pane>
+
+            <VBox spacing="20" alignment="TOP_CENTER" style="-fx-padding: 30;">
+                <GridPane hgap="20" vgap="18" alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" prefWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="250"/>
+                    </columnConstraints>
+
+                    <!-- Titre -->
+                    <Label text="Titre de la question"
+                           style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                           GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <VBox GridPane.rowIndex="0" GridPane.columnIndex="1" spacing="5">
+                        <TextField fx:id="titleField"
+                                   promptText="Ex: Douleur au côté droit après repas"
+                                   style="-fx-background-radius: 4; -fx-padding: 8; -fx-font-size: 14px;"/>
+                        <Label fx:id="titleCharCount" text="0/100"
+                               style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+                    </VBox>
+
+                    <!-- Spécialité -->
+                    <Label text="Spécialité concernée"
+                           style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                           GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="specialiteCombo"
+                              promptText="Sélectionnez..."
+                              style="-fx-background-radius: 4; -fx-padding: 8; -fx-font-size: 14px;"
+                              GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <!-- Contenu -->
+                    <Label text="Détails du problème"
+                           style="-fx-font-weight: bold; -fx-text-fill: #34495e;"
+                           GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <VBox GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="5">
+                        <TextArea fx:id="contentArea"
+                                  promptText="Décrivez vos symptômes, leur durée, les traitements essayés..."
+                                  style="-fx-background-radius: 4; -fx-padding: 8; -fx-font-size: 14px;"
+                                  prefRowCount="6" wrapText="true"/>
+                        <Label fx:id="contentCharCount" text="0/2000"
+                               style="-fx-text-fill: gray; -fx-font-size: 11px;"/>
+                    </VBox>
+
+                    <!-- Options -->
+                    <VBox GridPane.rowIndex="3" GridPane.columnIndex="1" spacing="12">
+                        <!-- Visibilité -->
+                        <HBox spacing="10" alignment="CENTER_LEFT">
+                            <CheckBox fx:id="visibleCheck"
+                                      selected="true"
+                                      style="-fx-text-fill: #34495e;"/>
+                            <Label text="Rendre cette question visible publiquement"
+                                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 13px;"/>
+                        </HBox>
+
+                        <!-- Upload image -->
+                        <VBox spacing="5">
+                            <Label text="Ajouter une image (optionnel)"
+                                   style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Button fx:id="uploadImageButton"
+                                        text="Parcourir..."
+                                        style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-background-radius: 4; -fx-padding: 8 15; -fx-font-weight: bold;"
+                                        onAction="#handleUploadImage"/>
+                                <Label fx:id="imagePathLabel"
+                                       text="Aucun fichier sélectionné"
+                                       style="-fx-text-fill: #95a5a6; -fx-font-size: 13px;"/>
+                            </HBox>
+                            <Text text="Formats acceptés: JPG, PNG (max 5MB)"
+                                  style="-fx-fill: #bdc3c7; -fx-font-size: 11px; -fx-font-style: italic;"/>
+                        </VBox>
+                    </VBox>
+                </GridPane>
+
+                <!-- Boutons d'action -->
+                <HBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+                    <Button text="Annuler"
+                            style="-fx-background-color: transparent; -fx-text-fill: #e74c3c; -fx-border-color: #e74c3c; -fx-border-radius: 4; -fx-padding: 8 25; -fx-font-weight: bold;"
+                            onAction="#handleCancel"/>
+                    <Button text="Publier la question"
+                            style="-fx-background-color: linear-gradient(to right, #2ecc71, #27ae60); -fx-text-fill: white; -fx-background-radius: 4; -fx-padding: 8 30; -fx-font-weight: bold; -fx-font-size: 14px;"
+                            onAction="#handleSubmit"/>
+                </HBox>
+            </VBox>
+        </StackPane>
+
+        <!-- Pied de page -->
+        <Text text="Vos informations médicales restent confidentielles"
+              style="-fx-fill: #95a5a6; -fx-font-size: 12px;"/>
+    </VBox>
+</ScrollPane>

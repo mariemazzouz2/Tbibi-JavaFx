@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox spacing="10" alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.SmsFormController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <TextField fx:id="nameField" promptText="Nom du destinataire"/>
+    <TextField fx:id="phoneField" promptText="Numéro du destinataire (+33...)"/>
+    <TextArea fx:id="messageArea" promptText="Message" prefRowCount="4"/>
+
+    <Button text="Envoyer SMS" onAction="#sendSms"/>
+    <Label fx:id="statusLabel"/>
+    <Button text="Ajouter utilisateur" onAction="#goToUsers" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+</VBox>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tests.Patient.EditQuestionController"
+      spacing="15" alignment="CENTER"
+      style="-fx-background-color: #f5f5f5; -fx-padding: 20;">
+
+    <Label text="Modifier la question" style="-fx-font-size: 20px; -fx-font-weight: bold;">
+        <font>
+            <Font name="System Bold" size="20.0" />
+        </font>
+    </Label>
+
+    <GridPane hgap="10" vgap="10">
+        <!-- Titre -->
+        <Label text="Titre:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="titleField" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+
+        <!-- Spécialité -->
+        <Label text="Spécialité:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="specialiteCombo" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="2"/>
+
+        <!-- Contenu -->
+        <Label text="Contenu:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextArea fx:id="contentArea" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="2"
+                  prefRowCount="5" prefWidth="300"/>
+
+        <!-- Visible -->
+        <Label text="Visible:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <CheckBox fx:id="visibleCheck" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Button text="Annuler" style="-fx-background-color: #95a5a6; -fx-text-fill: white;"
+                onAction="#handleCancel"/>
+        <Button text="Enregistrer" style="-fx-background-color: #2ecc71; -fx-text-fill: white;"
+                onAction="#handleSave"/>
+    </HBox>
+</VBox>

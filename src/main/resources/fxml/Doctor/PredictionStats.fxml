@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import java.net.URL?>
+
+<?import javafx.scene.chart.BarChart?>
+<ScrollPane xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Doctor.PredictionStatsController" fitToWidth="true" fitToHeight="false">
+    <content>
+        <VBox styleClass="container" spacing="20">
+            <stylesheets>
+                <URL value="@../../MedicalStyle.css" />
+            </stylesheets>
+
+            <!-- En-tête -->
+            <Label fx:id="headerTitle" text="Statistiques des Prédictions" styleClass="header-title" alignment="CENTER"/>
+
+            <!-- Graphique 1 : Répartition des prédictions de diabète (Pie Chart) -->
+            <Label fx:id="diabetesPieChartErrorLabel" text="" styleClass="label" textFill="RED" visible="false"/>
+            <PieChart fx:id="diabetesPieChart" title="Répartition des Prédictions de Diabète" styleClass="chart-custom-main"/>
+
+            <!-- Graphique 2 : Corrélation entre BMI et HbA1c (Scatter Chart) -->
+            <Label fx:id="bmiHbA1cScatterChartErrorLabel" text="" styleClass="label" textFill="RED" visible="false"/>
+            <ScatterChart fx:id="bmiHbA1cScatterChart" title="Corrélation entre BMI et HbA1c" styleClass="chart-custom-main">
+                <xAxis>
+                    <NumberAxis label="BMI" styleClass="chart-custom-axis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="HbA1c Level" styleClass="chart-custom-axis"/>
+                </yAxis>
+            </ScatterChart>
+
+            <!-- Graphique 3 : Prédictions par tranche d'âge (Bar Chart) -->
+            <Label fx:id="ageGroupBarChartErrorLabel" text="" styleClass="label" textFill="RED" visible="false"/>
+            <BarChart fx:id="ageGroupBarChart" title="Prédictions par Tranche d'Âge" styleClass="chart-custom-main">
+                <xAxis>
+                    <CategoryAxis label="Tranche d'Âge" styleClass="chart-custom-axis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Nombre de Patients" styleClass="chart-custom-axis"/>
+                </yAxis>
+            </BarChart>
+
+            <!-- Graphique 4 : Prédictions par sexe (Bar Chart) -->
+            <Label fx:id="genderBarChartErrorLabel" text="" styleClass="label" textFill="RED" visible="false"/>
+            <BarChart fx:id="genderBarChart" title="Prédictions par Sexe" styleClass="chart-custom-main">
+                <xAxis>
+                    <CategoryAxis label="Sexe" styleClass="chart-custom-axis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Nombre de Patients" styleClass="chart-custom-axis"/>
+                </yAxis>
+            </BarChart>
+
+            <padding>
+                <Insets top="20" bottom="20" left="20" right="20"/>
+            </padding>
+        </VBox>
+    </content>
+</ScrollPane>

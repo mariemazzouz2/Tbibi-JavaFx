@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Doctor.FormPredictionController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox alignment="CENTER" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" styleClass="container">
+            <children>
+                <!-- En-tête -->
+                <HBox styleClass="header">
+                    <Label text="Ajouter une Prédiction" styleClass="header-title"/>
+                </HBox>
+
+                <!-- Formulaire dans une carte -->
+                <VBox styleClass="card" spacing="10.0">
+                    <Label fx:id="dossierIdLabel" text="Dossier ID: " styleClass="custom-label"/>
+                    <CheckBox fx:id="hypertensionCheckBox" text="Hypertension" styleClass="custom-check-box"/>
+                    <CheckBox fx:id="heartDiseaseCheckBox" text="Maladie Cardiaque" styleClass="custom-check-box"/>
+
+                    <HBox alignment="CENTER" spacing="10.0" styleClass="custom-padding-small">
+                        <Label text="Tabagisme :" styleClass="label"/>
+                        <ChoiceBox fx:id="smokingHistoryChoiceBox" prefWidth="150.0" styleClass="choice-box"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0" styleClass="padding-small">
+                        <Label text="IMC :" styleClass="label"/>
+                        <TextField fx:id="bmiField" prefWidth="100.0" styleClass="text-field"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0" styleClass="padding-small">
+                        <Label text="Niveau HbA1c :" styleClass="label"/>
+                        <TextField fx:id="hbA1cLevelField" prefWidth="100.0" styleClass="text-field"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0" styleClass="padding-small">
+                        <Label text="Glucose Sanguin :" styleClass="label"/>
+                        <TextField fx:id="bloodGlucoseLevelField" prefWidth="100.0" styleClass="text-field"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="10.0" styleClass="padding-medium">
+                        <Button fx:id="enregistrerButton" onAction="#enregistrerPrediction" styleClass="button" text="Enregistrer"/>
+                        <Button onAction="#annuler" styleClass="button button-reset" text="Annuler"/>
+                    </HBox>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/24" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AnalyseDetailsController">
+    <stylesheets>
+        <URL value="@../../MedicalStyle.css" />
+    </stylesheets>
+    <children>
+        <VBox spacing="10.0" alignment="CENTER" layoutX="20.0" layoutY="20.0" prefWidth="360.0" styleClass="container">
+            <children>
+                <!-- En-tête -->
+                <HBox styleClass="header">
+                    <Label text="Détails de l'Analyse" styleClass="header-title"/>
+                </HBox>
+
+                <!-- Détails dans une carte -->
+                <VBox styleClass="card" spacing="10.0">
+                    <children>
+                        <Label fx:id="dossierIdLabel" styleClass="label"/>
+                        <Label fx:id="typeLabel" styleClass="label"/>
+                        <Label fx:id="dateAnalyseLabel" styleClass="label"/>
+                        <Label fx:id="donneesAnalyseLabel" styleClass="label" wrapText="true"/>
+                        <Label fx:id="diagnosticLabel" styleClass="label" wrapText="true"/>
+                        <HBox spacing="10.0" alignment="CENTER" styleClass="padding-medium">
+                            <children>
+                                <Button text="Fermer" onAction="#closeDetails" styleClass="button button-reset"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
