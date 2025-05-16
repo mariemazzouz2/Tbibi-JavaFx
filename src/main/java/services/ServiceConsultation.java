@@ -2,7 +2,6 @@ package services;
 
 import entities.Consultation;
 import entities.Ordonnance;
-import entities.TypeConsultation;
 import entities.Utilisateur;
 import exceptions.ValidationException;
 import utils.MyDataBase;
@@ -21,7 +20,12 @@ public class ServiceConsultation implements IService<Consultation> {
     }
 
     @Override
-    public void ajouter(Consultation consultation) throws SQLException {
+    public void ajouter(Consultation consultation) throws SQLException, ValidationException {
+        // Check for scheduling conflicts
+        if (hasSchedulingConflict(consultation)) {
+            throw new ValidationException("Le médecin a déjà une consultation programmée à cette date et heure.");
+        }
+
         String query = "INSERT INTO consultation (type, status, commentaire, date_c, meet_link, medecin_id, patient_id) VALUES (UPPER(?), ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, consultation.getType().toString());
@@ -42,7 +46,12 @@ public class ServiceConsultation implements IService<Consultation> {
     }
 
     @Override
-    public void modifier(Consultation consultation) throws SQLException {
+    public void modifier(Consultation consultation) throws SQLException, ValidationException {
+        // Check for scheduling conflicts
+        if (hasSchedulingConflict(consultation)) {
+            throw new ValidationException("Le médecin a déjà une consultation programmée à cette date et heure.");
+        }
+
         String query = "UPDATE consultation SET type = UPPER(?), status = ?, commentaire = ?, date_c = ?, meet_link = ?, medecin_id = ?, patient_id = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, consultation.getType().toString());
@@ -189,11 +198,6 @@ public class ServiceConsultation implements IService<Consultation> {
 
         // Handle legacy type values from database
         String typeStr = rs.getString("type").toUpperCase();
-        if (typeStr.equals("EN LIGNE")) {
-            consultation.setType(TypeConsultation.VIRTUELLE);
-        } else {
-            consultation.setType(TypeConsultation.fromString(typeStr));
-        }
 
         consultation.setStatus(rs.getString("status"));
         consultation.setCommentaire(rs.getString("commentaire"));
@@ -388,5 +392,48 @@ public class ServiceConsultation implements IService<Consultation> {
 
     public List<Consultation> getByPatient(int patientId) throws SQLException {
         return getByPatientId(patientId);
+    }
+
+    private boolean hasSchedulingConflict(Consultation newConsultation) throws SQLException, ValidationException {
+        // Validate required fields
+        if (newConsultation == null) {
+            throw new ValidationException("La consultation ne peut pas être null");
+        }
+        if (newConsultation.getMedecin() == null) {
+            throw new ValidationException("Le médecin doit être spécifié");
+        }
+        if (newConsultation.getDateC() == null) {
+            throw new ValidationException("La date de consultation doit être spécifiée");
+        }
+
+        // Query to check for overlapping consultations
+        String query = "SELECT COUNT(*) FROM consultation " +
+                      "WHERE medecin_id = ? " +
+                      "AND DATE(date_c) = DATE(?) " +
+                      "AND TIME(date_c) = TIME(?) ";
+        
+        // Only add ID check for existing consultations
+        Integer consultationId = newConsultation.getId();
+        if (consultationId != null) {
+            query += "AND id != ?";
+        }
+        
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, newConsultation.getMedecin().getId());
+            stmt.setTimestamp(2, Timestamp.valueOf(newConsultation.getDateC()));
+            stmt.setTimestamp(3, Timestamp.valueOf(newConsultation.getDateC()));
+            
+            // Set ID parameter only if it exists
+            if (consultationId != null) {
+                stmt.setInt(4, consultationId);
+            }
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -1,8 +1,8 @@
 package tests.Patient;
 
 import entities.Consultation;
-import entities.TypeConsultation;
 import entities.Utilisateur;
+import exceptions.ValidationException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +33,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Insets;
+import utils.SessionManager;
 
 public class PatientConsultationController implements Initializable {
 
@@ -67,7 +68,7 @@ public class PatientConsultationController implements Initializable {
             ServiceUtilisateur su = new ServiceUtilisateur();
             // TODO FIX IN INTEGRATION
             try {
-                this.currentUser = su.getById(1);
+                this.currentUser = su.getById(SessionManager.getInstance().getCurrentUser().getId());
                 loadConsultations();
             } catch (SQLException e) {
                 showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible de récupérer les informations utilisateur",
@@ -167,7 +168,7 @@ public class PatientConsultationController implements Initializable {
                 VBox typeBox = new VBox(2);
                 Label typeHeaderLabel = new Label("Type:");
                 typeHeaderLabel.setStyle("-fx-font-weight: bold;");
-                Label typeValueLabel = new Label(consultation.getType().getDisplayName());
+                Label typeValueLabel = new Label(consultation.getType());
                 typeBox.getChildren().addAll(typeHeaderLabel, typeValueLabel);
 
                 VBox statusBox = new VBox(2);
@@ -292,7 +293,7 @@ public class PatientConsultationController implements Initializable {
                     .filter(c -> {
                         // Handle the special case for VIRTUELLE/EN LIGNE
                         if (typeValue.equals("VIRTUELLE") || typeValue.equals("EN LIGNE")) {
-                            return c.getType() == TypeConsultation.VIRTUELLE ||
+                            return
                                     c.getType().toString().equals("EN LIGNE");
                         } else {
                             return c.getType().toString().equalsIgnoreCase(typeValue);
@@ -322,7 +323,7 @@ public class PatientConsultationController implements Initializable {
                             }
                         }
                         // Search in type
-                        return c.getType().getDisplayName().toLowerCase().contains(searchText);
+                        return c.getType().toLowerCase().contains(searchText);
                     })
                     .collect(Collectors.toList());
         }
@@ -400,6 +401,8 @@ public class PatientConsultationController implements Initializable {
                 } catch (SQLException e) {
                     showAlert(Alert.AlertType.ERROR, "Erreur",
                             "Erreur lors de l'annulation", e.getMessage());
+                } catch (ValidationException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }

@@ -1,7 +1,6 @@
 package tests.Patient;
 
 import entities.Consultation;
-import entities.TypeConsultation;
 import entities.Utilisateur;
 import exceptions.ValidationException;
 import javafx.collections.FXCollections;
@@ -44,7 +43,7 @@ import java.time.format.DateTimeFormatter;
 
 public class PatientConsultationFormController implements Initializable {
 
-    @FXML private ComboBox<TypeConsultation> comboType;
+    @FXML private ComboBox<String> comboType;
     @FXML private ComboBox<Utilisateur> comboMedecin;
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> comboHour;
@@ -149,7 +148,7 @@ public class PatientConsultationFormController implements Initializable {
             // For virtual consultations, generate a meeting link
             //this.currentConsultation = consultation;
 
-            if (consultation.getType() == TypeConsultation.VIRTUELLE) {
+          //  if (consultation.getType() == TypeConsultation.VIRTUELLE) {
                 // Get patient and doctor names
                 String patientName = currentUser.getNom() + " " + currentUser.getPrenom();
                 String doctorName = comboMedecin.getValue().getNom() + " " + comboMedecin.getValue().getPrenom();
@@ -164,7 +163,7 @@ public class PatientConsultationFormController implements Initializable {
                         title, startTime, endTime);
 
                 consultation.setMeetLink(meetLink);
-            }
+          //  }
 
             // ... existing save code ...
 
@@ -179,19 +178,8 @@ public class PatientConsultationFormController implements Initializable {
             serviceUtilisateur = new ServiceUtilisateur();
             
             // Initialize Type ComboBox
-            comboType.setItems(FXCollections.observableArrayList(TypeConsultation.values()));
-            comboType.setConverter(new StringConverter<TypeConsultation>() {
-                @Override
-                public String toString(TypeConsultation object) {
-                    return object != null ? object.getDisplayName() : "";
-                }
+            comboType.setItems(FXCollections.observableArrayList("ONLINE", "IN-PERON"));
 
-                @Override
-                public TypeConsultation fromString(String string) {
-                    return null; // Not needed for ComboBox
-                }
-            });
-            
             // Initialize hours ComboBox (8:00 to 18:00)
             ObservableList<String> hours = FXCollections.observableArrayList();
             for (int i = 8; i <= 18; i++) {
@@ -224,7 +212,7 @@ public class PatientConsultationFormController implements Initializable {
         this.currentConsultation = consultation;
         
         if (consultation != null) {
-            comboType.setValue(consultation.getType());
+            comboType.setValue(consultation.getType().toString());
             comboMedecin.setValue(consultation.getMedecin());
             datePicker.setValue(consultation.getDateC().toLocalDate());
             
@@ -320,7 +308,7 @@ public class PatientConsultationFormController implements Initializable {
             if ("create".equals(mode)) {
                 // Create new consultation
                 Consultation consultation = new Consultation();
-                consultation.setType(comboType.getValue());
+                consultation.setType(String.valueOf(comboType.getValue()));
                 consultation.setStatus(Consultation.STATUS_PENDING);
                 consultation.setCommentaire(textCommentaire.getText());
                 consultation.setDateC(dateTime);
@@ -328,7 +316,7 @@ public class PatientConsultationFormController implements Initializable {
                 consultation.setPatient(this.currentUser);
 
                 // For virtual consultations, generate a Google Meet link
-                if (consultation.getType() == TypeConsultation.VIRTUELLE) {
+                if (true) {
                     String title = String.format("Consultation %s - Dr. %s avec %s",
                         comboType.getValue(),
                         consultation.getMedecin().getNom(),
@@ -345,30 +333,17 @@ public class PatientConsultationFormController implements Initializable {
                 
                 showAlert(Alert.AlertType.INFORMATION, "Succès", 
                     "Consultation planifiée", 
-                    "Votre demande de consultation a été soumise avec succès." + 
-                    (consultation.getType() == TypeConsultation.VIRTUELLE ? 
-                    "\nLien de consultation: " + consultation.getMeetLink() : ""));
+                    "Votre demande de consultation a été soumise avec succès.");
+                            //+
+                  //  (consultation.getType() == TypeConsultation.VIRTUELLE ?
+               //     "\nLien de consultation: " + consultation.getMeetLink() : ""));
                 
             } else {
                 // Update existing consultation
-                currentConsultation.setType(comboType.getValue());
+                currentConsultation.setType(String.valueOf(comboType.getValue()));
                 currentConsultation.setCommentaire(textCommentaire.getText());
                 currentConsultation.setDateC(dateTime);
                 currentConsultation.setMedecin(comboMedecin.getValue());
-                
-                // Update meet link if type changes to virtual
-                if (currentConsultation.getType() == TypeConsultation.VIRTUELLE &&
-                        (currentConsultation.getMeetLink() == null || currentConsultation.getMeetLink().isEmpty())) {
-                    String title = String.format("Consultation %s - Dr. %s avec %s",
-                        comboType.getValue(),
-                        currentConsultation.getMedecin().getNom(),
-                        currentConsultation.getPatient().getNom()
-                    );
-                    
-                    LocalDateTime endTime = dateTime.plusHours(1); // 1-hour consultation
-                    String meetLink = createGoogleMeetLink(title, dateTime, endTime);
-                    currentConsultation.setMeetLink(meetLink);
-                }
                 
                 // Save changes
                 serviceConsultation.modifier(currentConsultation);

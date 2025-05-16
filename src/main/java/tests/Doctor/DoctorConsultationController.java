@@ -1,8 +1,8 @@
 package tests.Doctor;
 
 import entities.Consultation;
-import entities.TypeConsultation;
 import entities.Utilisateur;
+import exceptions.ValidationException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +76,7 @@ public class DoctorConsultationController implements Initializable {
 
             // Configure table columns
             colId.setCellValueFactory(new PropertyValueFactory<>("id"));
-            colType.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getType().getDisplayName()));
+            colType.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getType()));
             colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
             colDate.setCellValueFactory(data -> {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
@@ -296,6 +296,8 @@ public class DoctorConsultationController implements Initializable {
             } catch (SQLException e) {
                 showAlert(Alert.AlertType.ERROR, "Erreur",
                         "Erreur lors de la confirmation", e.getMessage());
+            } catch (ValidationException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -326,6 +328,8 @@ public class DoctorConsultationController implements Initializable {
                 } catch (SQLException e) {
                     showAlert(Alert.AlertType.ERROR, "Erreur",
                             "Erreur lors du refus", e.getMessage());
+                } catch (ValidationException e) {
+                    throw new RuntimeException(e);
                 }
             }
         }
@@ -350,6 +354,8 @@ public class DoctorConsultationController implements Initializable {
             } catch (SQLException e) {
                 showAlert(Alert.AlertType.ERROR, "Erreur",
                         "Erreur lors de la finalisation", e.getMessage());
+            } catch (ValidationException e) {
+                throw new RuntimeException(e);
             }
         }
     }

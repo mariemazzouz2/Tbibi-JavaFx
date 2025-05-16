@@ -50,8 +50,29 @@ public class LoginFormController implements Initializable {
                 return;
             }
 
-            if (!BCrypt.checkpw(password, user.getPassword())) {
-                showAlert("Mot de passe incorrect !");
+            // Debug logging
+            System.out.println("Original hash from DB: " + user.getPassword());
+            
+            String hashedPassword = user.getPassword();
+            
+            // Extract the salt components
+            String version = hashedPassword.substring(0, 4);  // $2y$
+            String cost = hashedPassword.substring(4, 6);     // 13
+            String salt = hashedPassword.substring(7, 29);    // First 22 chars after $
+            
+            // Reconstruct the hash in jBCrypt format
+            String jbcryptHash = "$2a$" + cost + "$" + salt + hashedPassword.substring(29);
+            System.out.println("Converted hash for jBCrypt: " + jbcryptHash);
+
+            try {
+                if (!BCrypt.checkpw(password, jbcryptHash)) {
+                    showAlert("Mot de passe incorrect !");
+                    return;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("BCrypt error: " + e.getMessage());
+                e.printStackTrace();
+                showAlert("Erreur de vérification du mot de passe. Contactez l'administrateur.");
                 return;
             }
 

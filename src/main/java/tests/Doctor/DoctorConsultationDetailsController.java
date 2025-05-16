@@ -2,8 +2,8 @@ package tests.Doctor;
 
 import entities.Consultation;
 import entities.Ordonnance;
-import entities.TypeConsultation;
 import entities.Utilisateur;
+import exceptions.ValidationException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -85,7 +85,7 @@ public class DoctorConsultationDetailsController implements Initializable {
                 updateButtonsVisibility();
 
                 // Handle meet link for virtual consultations
-                if (TypeConsultation.VIRTUELLE.equals(this.consultation.getType()) && this.consultation.getMeetLink() != null && !this.consultation.getMeetLink().isEmpty()) {
+                if (this.consultation.getMeetLink() != null && !this.consultation.getMeetLink().isEmpty()) {
                     lblMeetLink.setVisible(true);
                     hyperlinkMeet.setVisible(true);
                     hyperlinkMeet.setText(this.consultation.getMeetLink());
@@ -169,6 +169,8 @@ public class DoctorConsultationDetailsController implements Initializable {
             updateButtonsVisibility();
         } catch (SQLException e) {
             AlertUtils.showError("Erreur", "Erreur lors de la mise à jour du statut", e.getMessage());
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -185,6 +187,8 @@ public class DoctorConsultationDetailsController implements Initializable {
             updateButtonsVisibility();
         } catch (SQLException e) {
             AlertUtils.showError("Erreur", "Erreur lors de la mise à jour du statut", e.getMessage());
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -201,6 +205,8 @@ public class DoctorConsultationDetailsController implements Initializable {
             updateButtonsVisibility();
         } catch (SQLException e) {
             AlertUtils.showError("Erreur", "Erreur lors de la mise à jour du statut", e.getMessage());
+        } catch (ValidationException e) {
+            throw new RuntimeException(e);
         }
     }
 

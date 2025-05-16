@@ -12,7 +12,7 @@ public class Consultation {
 
     // Properties
     private Integer id;
-    private TypeConsultation type;
+    private String type;
     private String status = STATUS_PENDING;
     private String commentaire;
     private LocalDateTime dateC;
@@ -25,7 +25,7 @@ public class Consultation {
     public Consultation() {
     }
 
-    public Consultation(TypeConsultation type, String commentaire, LocalDateTime dateC,
+    public Consultation(String type, String commentaire, LocalDateTime dateC,
                         Utilisateur medecin, Utilisateur patient) {
         this.type = type;
         this.commentaire = commentaire;
@@ -43,11 +43,11 @@ public class Consultation {
         this.id = id;
     }
 
-    public TypeConsultation getType() {
+    public String getType() {
         return type;
     }
 
-    public Consultation setType(TypeConsultation type) {
+    public Consultation setType(String type) {
         this.type = type;
         return this;
     }

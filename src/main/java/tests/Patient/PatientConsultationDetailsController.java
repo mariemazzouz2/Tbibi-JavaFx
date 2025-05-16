@@ -2,7 +2,6 @@ package tests.Patient;
 
 import entities.Consultation;
 import entities.Ordonnance;
-import entities.TypeConsultation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,7 +70,7 @@ public class PatientConsultationDetailsController implements Initializable {
     private void updateUI() {
         // Set all fields
         labelId.setText(consultation.getId().toString());
-        labelType.setText(consultation.getType().getDisplayName());
+        labelType.setText(consultation.getType());
         labelStatus.setText(consultation.getStatus());
         
         // Format date
@@ -86,7 +85,7 @@ public class PatientConsultationDetailsController implements Initializable {
         textCommentaire.setEditable(false);
         
         // Handle meet link for virtual consultations
-        if (consultation.getType() == TypeConsultation.VIRTUELLE && 
+        if (
             consultation.getMeetLink() != null && 
             !consultation.getMeetLink().isEmpty()) {
             
